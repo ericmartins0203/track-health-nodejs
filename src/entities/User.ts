@@ -5,10 +5,10 @@ export class User {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({ length: 100, nullable: false })
+  @Column({ type: "varchar", length: 100, nullable: false })
   name: string;
 
-  @Column({ length: 150, nullable: false, unique: true })
+  @Column({ type: "varchar",length: 150, nullable: false, unique: true })
   email: string;
 
   @Column()
@@ -17,9 +17,9 @@ export class User {
   @Column({ nullable: false })
   birthDate: Date;
 
-  @Column({ length: 50 })
+  @Column({ type: "varchar",length: 50 })
   gender: Date;
 
-  @Column({ length: 50 })
+  @Column({ type: "varchar",length: 50 })
   sex: Date;
 }
