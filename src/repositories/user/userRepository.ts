@@ -1,7 +1,7 @@
 import { getRepository, Repository } from "typeorm";
 
 import { User } from "../../entities/User";
-import { IUserInterface, IUserRepo } from "./userRepositoryInterface";
+import { IUserInterface, IUserRepo } from "./InterfaceUserRepository";
 
 class UserRepository implements IUserRepo {
   private ormRepository: Repository<User>;

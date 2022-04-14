@@ -1,4 +1,4 @@
-import { Request, Response, Express, Router } from "express";
+import { Express, Router } from "express";
 
 import { CrateUserController } from "../../controllers";
 import { validateShape } from "../../middlewares/user/validateShape";
