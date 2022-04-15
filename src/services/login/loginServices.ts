@@ -16,9 +16,13 @@ const loginServices = async (
   if (!match) {
     throw new Error("Password does not match");
   }
-  const token = jwt.sign({ userId: user.id }, config.secret, {
-    expiresIn: config.expiresIn,
-  });
+  const token = jwt.sign(
+    { userId: user.id, email: user.email },
+    config.secret,
+    {
+      expiresIn: config.expiresIn,
+    }
+  );
   return token;
 };
 

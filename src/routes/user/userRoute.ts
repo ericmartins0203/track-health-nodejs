@@ -1,7 +1,7 @@
 import { Express, Router } from "express";
 
 import { CrateUserController } from "../../controllers";
-import { validateShape } from "../../middlewares";
+import { validateAuthToken, validateShape } from "../../middlewares";
 import { createUserShape } from "../../shapes";
 
 const userRoute = (app: Express) => {
@@ -11,6 +11,10 @@ const userRoute = (app: Express) => {
     validateShape(createUserShape),
     CrateUserController
   );
+
+  userRoute.post("/auth", validateAuthToken, (req, res) => {
+    return res.json({ message: "Token validado" });
+  });
 
   app.use("/user", userRoute);
 };
