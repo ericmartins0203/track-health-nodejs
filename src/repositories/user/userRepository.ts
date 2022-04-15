@@ -12,7 +12,7 @@ class UserRepository implements IUserRepo {
 
   createUser = async (user: IUserInterface) => this.ormRepository.save(user);
 
-  findOne = async (email: string) =>
+  findOne = async (email: string): Promise<IUserInterface | undefined> =>
     this.ormRepository
       .createQueryBuilder("user")
       .addSelect("user.password")

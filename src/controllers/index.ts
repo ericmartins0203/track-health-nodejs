@@ -1,3 +1,4 @@
-import { CrateUserController } from "./user/createUserController";
+import { crateUserController } from "./user/createUserController";
+import { getUserController } from "./user/getUserController";
 
-export { CrateUserController };
+export { crateUserController, getUserController };

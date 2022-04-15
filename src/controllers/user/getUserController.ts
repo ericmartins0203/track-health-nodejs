@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 
-import { CreateUserService } from "../../services";
+import { getUserService } from "../../services";
 
-const crateUserController = async (
+const getUserController = async (
   request: Request,
   response: Response
 ): Promise<Response> => {
   try {
-    const userData = request.validate;
-    const user = await CreateUserService(userData);
+    const { email } = request.validate;
+    const user = await getUserService(email);
     return response.json(user);
   } catch (error: unknown) {
     if (error instanceof Error) {
@@ -20,4 +20,4 @@ const crateUserController = async (
   }
 };
 
-export { crateUserController };
+export { getUserController };
