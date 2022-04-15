@@ -7,8 +7,8 @@ const validateShape =
     try {
       req.validate = await shape.validate(req.body);
       return next();
-    } catch (error) {
-      return res.status(400).send("Invalid data");
+    } catch (error: any) {
+      return res.status(400).json({ error: error.errors });
     }
   };
 
