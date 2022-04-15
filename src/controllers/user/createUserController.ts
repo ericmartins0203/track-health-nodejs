@@ -7,7 +7,7 @@ const CrateUserController = async (
   response: Response
 ): Promise<Response> => {
   try {
-    const userData = request.body;
+    const userData = request.validate;
     const user = await CreateUserService(userData);
     return response.json(user);
   } catch (error: unknown) {

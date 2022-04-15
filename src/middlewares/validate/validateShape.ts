@@ -5,10 +5,10 @@ const validateShape =
   (shape: AnySchema) =>
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      await shape.validate(req.body);
-      next();
+      req.validate = await shape.validate(req.body);
+      return next();
     } catch (error) {
-      res.status(400).send("Invalid data");
+      return res.status(400).send("Invalid data");
     }
   };
 

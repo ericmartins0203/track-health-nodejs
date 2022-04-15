@@ -1,3 +1,3 @@
-import { CrateUserController } from "./user/userController";
+import { CrateUserController } from "./user/createUserController";
 
 export { CrateUserController };
