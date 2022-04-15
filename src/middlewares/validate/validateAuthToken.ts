@@ -16,9 +16,9 @@ const validateAuthToken = (req: Request, res: Response, next: NextFunction) => {
       return res.status(401).json({ error: e.message });
     }
 
-    const { userId } = decoded as JwtPayload;
+    const { userId, email } = decoded as JwtPayload;
 
-    req.userId = userId;
+    req.decoded = { userId, email };
 
     return next();
   });
