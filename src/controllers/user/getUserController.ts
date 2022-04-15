@@ -7,7 +7,7 @@ const getUserController = async (
   response: Response
 ): Promise<Response> => {
   try {
-    const { email } = request.validate;
+    const { email } = request.decoded;
     const user = await getUserService(email);
     return response.json(user);
   } catch (error: unknown) {

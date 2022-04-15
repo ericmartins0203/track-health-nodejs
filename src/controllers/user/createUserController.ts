@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 
 import { CreateUserService } from "../../services";
 
-const crateUserController = async (
+const createUserController = async (
   request: Request,
   response: Response
 ): Promise<Response> => {
@@ -20,4 +20,4 @@ const crateUserController = async (
   }
 };
 
-export { crateUserController };
+export { createUserController };
