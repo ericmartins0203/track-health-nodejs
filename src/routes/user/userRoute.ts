@@ -1,7 +1,7 @@
 import { Express, Router } from "express";
 
 import { CrateUserController } from "../../controllers";
-import { validateShape } from "../../middlewares/user/validateShape";
+import { validateShape } from "../../middlewares";
 import { createUserShape } from "../../shapes";
 
 const userRoute = (app: Express) => {

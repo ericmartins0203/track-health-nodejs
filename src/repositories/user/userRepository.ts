@@ -11,6 +11,13 @@ class UserRepository implements IUserRepo {
   }
 
   createUser = async (user: IUserInterface) => this.ormRepository.save(user);
+
+  findOne = async (email: string) =>
+    this.ormRepository
+      .createQueryBuilder("user")
+      .addSelect("user.password")
+      .where("user.email = :email", { email })
+      .getOne();
 }
 
 export { UserRepository };

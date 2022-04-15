@@ -1,3 +1,4 @@
+import { loginUserShape } from "./login/loginShape";
 import { createUserShape } from "./user/CreateUserShape";
 
-export { createUserShape };
+export { createUserShape, loginUserShape };
