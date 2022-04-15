@@ -1,6 +1,6 @@
 import { Express, Router } from "express";
 
-import { CrateUserController } from "../../controllers";
+import { crateUserController, getUserController } from "../../controllers";
 import { validateShape } from "../../middlewares";
 import { createUserShape } from "../../shapes";
 
@@ -9,8 +9,9 @@ const userRoute = (app: Express) => {
   userRoute.post(
     "/register",
     validateShape(createUserShape),
-    CrateUserController
+    crateUserController
   );
+  userRoute.post("", getUserController);
 
   app.use("/user", userRoute);
 };
