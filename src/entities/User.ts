@@ -1,4 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+
+import { UserAllergies } from "./UserAllergies";
 
 @Entity("users")
 export class User {
@@ -22,4 +31,7 @@ export class User {
 
   @Column({ nullable: true })
   sex: string;
+
+  @OneToMany(() => UserAllergies, (userAllergies) => userAllergies.user)
+  userAllergies: UserAllergies[];
 }
