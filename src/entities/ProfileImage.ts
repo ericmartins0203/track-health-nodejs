@@ -1,19 +1,25 @@
-import {Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn} from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+
 import { User } from "./User";
 
 @Entity("profileImage")
 export class ProfileImage {
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column()
-    url: string;
+  @Column()
+  url: string;
 
-    @OneToOne(() => User, { nullable: false })
-    @JoinColumn()
-    user: User;
-
+  @OneToOne(() => User, { nullable: false })
+  @JoinColumn()
+  user: User;
 }
