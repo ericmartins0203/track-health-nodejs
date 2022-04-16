@@ -1,5 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
+import { UserDiseases } from "./UserDisease";
+
 @Entity("users")
 export class User {
   @PrimaryGeneratedColumn("uuid")
@@ -22,4 +24,7 @@ export class User {
 
   @Column({ nullable: true })
   sex: string;
+
+  @OneToMany((_type) => UserDiseases, (_user) => User, { eager: true })
+  userDiseases: UserDiseases[];
 }

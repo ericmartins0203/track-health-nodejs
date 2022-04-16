@@ -1,7 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+
+import { User } from "./User";
 
 @Entity("UserDiseases")
-export class User {
+export class UserDiseases {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
@@ -10,4 +12,7 @@ export class User {
 
   @Column({ type: "varchar", length: 250, nullable: false, unique: true })
   medication: string;
+
+  @ManyToOne((_type) => User, (_userDisease) => UserDiseases)
+  user: User;
 }
