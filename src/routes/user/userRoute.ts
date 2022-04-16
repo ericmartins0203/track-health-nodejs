@@ -1,8 +1,12 @@
 import { Express, Router } from "express";
 
-import { createUserController, getUserController } from "../../controllers";
+import {
+  createUserController,
+  getUserController,
+  updateUserController,
+} from "../../controllers";
 import { validateAuthToken, validateShape } from "../../middlewares";
-import { createUserShape } from "../../shapes";
+import { createUserShape, updateUserShape } from "../../shapes";
 
 const userRoute = (app: Express) => {
   const userRoute = Router();
@@ -14,9 +18,21 @@ const userRoute = (app: Express) => {
 
   userRoute.get("", validateAuthToken, getUserController);
 
-  userRoute.post("/auth", validateAuthToken, (req, res) => {
-    return res.json({ message: "Token validado" });
-  });
+  userRoute.patch(
+    "",
+    validateAuthToken,
+    validateShape(updateUserShape),
+    updateUserController
+  );
+
+  userRoute.post(
+    "/auth",
+    validateShape(updateUserShape),
+    validateAuthToken,
+    (req, res) => {
+      return res.json({ message: "Token validado" });
+    }
+  );
 
   app.use("/user", userRoute);
 };
