@@ -1,4 +1,4 @@
-import { Allergies } from "../../entities/Allergies";
+import { Allergies } from "../../entities/allergy/Allergies";
 
 interface IAllergy {
   id: string;

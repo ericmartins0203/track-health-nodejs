@@ -1,4 +1,4 @@
-import { UserAllergies } from "../../entities/UserAllergies";
+import { UserAllergies } from "../../entities/allergy/UserAllergies";
 
 interface IUserAllergies {
   id: string;

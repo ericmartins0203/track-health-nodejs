@@ -3,13 +3,11 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToOne,
   PrimaryGeneratedColumn,
-  Unique,
 } from "typeorm";
 
+import { User } from "../user/User";
 import { Allergies } from "./Allergies";
-import { User } from "./User";
 
 @Entity("userAllergies")
 export class UserAllergies {

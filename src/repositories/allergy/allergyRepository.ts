@@ -1,6 +1,6 @@
 import { Repository, getRepository } from "typeorm";
 
-import { Allergies } from "../../entities/Allergies";
+import { Allergies } from "../../entities/allergy/Allergies";
 import { IAllergyRepo } from "./interfaceAllergiesRepositories";
 
 class AllergyRepository implements IAllergyRepo {

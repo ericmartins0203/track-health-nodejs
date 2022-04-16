@@ -1,13 +1,7 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  JoinTable,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
-import { UserAllergies } from "./UserAllergies";
+import { UserAllergies } from "../allergy/UserAllergies";
+import { UserVaccine } from "../vaccine/userVaccine";
 
 @Entity("users")
 export class User {
@@ -34,4 +28,7 @@ export class User {
 
   @OneToMany(() => UserAllergies, (userAllergies) => userAllergies.user)
   userAllergies: UserAllergies[];
+
+  @OneToMany(() => UserVaccine, (userVaccine) => userVaccine.vaccine)
+  userVaccines: UserVaccine[];
 }
