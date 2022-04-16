@@ -11,7 +11,7 @@ interface IUserInterface {
 interface IUserRepo {
   createUser: (user: IUserInterface) => Promise<IUserInterface>;
   findOne: (email: string) => Promise<IUserInterface | undefined>;
-  // findByEmail: (email: string) => Promise<IUserInterface | undefined>;
+  findById: (id: string) => Promise<IUserInterface | undefined>;
 }
 
 export { IUserInterface, IUserRepo };
