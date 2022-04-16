@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+
+import { UserDiseases } from "./UserDisease";
 
 @Entity("diseases")
 export class Diseases {
@@ -7,4 +9,7 @@ export class Diseases {
 
   @Column({ type: "varchar", length: 100, nullable: false, unique: true })
   name: string;
+
+  @OneToOne((_type) => UserDiseases, (_disease) => Diseases)
+  userDisease: UserDiseases;
 }

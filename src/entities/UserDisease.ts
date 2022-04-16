@@ -1,5 +1,13 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 
+import { Diseases } from "./Disease";
 import { User } from "./User";
 
 @Entity("UserDiseases")
@@ -15,4 +23,8 @@ export class UserDiseases {
 
   @ManyToOne((_type) => User, (_userDisease) => UserDiseases)
   user: User;
+
+  @OneToOne((_type) => Diseases, (_userDisease) => UserDiseases)
+  @JoinColumn()
+  disease: Diseases;
 }
