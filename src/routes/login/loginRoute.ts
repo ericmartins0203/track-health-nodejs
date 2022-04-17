@@ -1,6 +1,6 @@
 import { Express, Router } from "express";
 
-import { loginController } from "../../controllers/login/loginController";
+import { loginController } from "../../controllers";
 import { validateShape } from "../../middlewares";
 import { loginUserShape } from "../../shapes";
 

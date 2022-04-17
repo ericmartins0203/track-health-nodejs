@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 
+import { IUserInterface } from "../../repositories/user/InterfaceUserRepository";
 import { CreateUserService } from "../../services";
 
 const createUserController = async (
@@ -7,7 +8,7 @@ const createUserController = async (
   response: Response
 ): Promise<Response> => {
   try {
-    const userData = request.validate;
+    const userData = request.validate as IUserInterface;
     const user = await CreateUserService(userData);
     return response.json(user);
   } catch (error: unknown) {
