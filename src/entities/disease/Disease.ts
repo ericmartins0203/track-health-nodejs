@@ -1,8 +1,15 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  Unique,
+} from "typeorm";
 
 import { UserDiseases } from "./UserDisease";
 
 @Entity("diseases")
+@Unique(["user", "disease"])
 export class Diseases {
   @PrimaryGeneratedColumn("uuid")
   id: string;
@@ -10,6 +17,6 @@ export class Diseases {
   @Column({ type: "varchar", length: 100, nullable: false, unique: true })
   name: string;
 
-  @OneToOne((_type) => UserDiseases, (_disease) => Diseases)
-  userDisease: UserDiseases;
+  // @OneToMany(() => UserDiseases, (userDisease) => userDisease.disease)
+  // userDiseases: UserDiseases;
 }

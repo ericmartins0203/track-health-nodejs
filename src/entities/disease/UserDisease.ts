@@ -3,28 +3,27 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
 
+import { User } from "../User";
 import { Diseases } from "./Disease";
-import { User } from "./User";
 
 @Entity("UserDiseases")
 export class UserDiseases {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({ type: "varchar", length: 250, nullable: false, unique: true })
+  @Column({ type: "varchar", length: 250, nullable: true })
   description: string;
 
-  @Column({ type: "varchar", length: 250, nullable: false, unique: true })
+  @Column({ type: "varchar", length: 250, nullable: true })
   medication: string;
 
-  @ManyToOne((_type) => User, (_userDisease) => UserDiseases)
+  @ManyToOne(() => User, (user) => user.id)
   user: User;
 
-  @OneToOne((_type) => Diseases, (_userDisease) => UserDiseases)
+  @ManyToOne(() => Diseases, (userDisease) => userDisease.id)
   @JoinColumn()
   disease: Diseases;
 }
