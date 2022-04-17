@@ -1,5 +1,6 @@
 import { Express, Router } from "express";
 
+import { getUserAllergies } from "../../controllers";
 import { createUserAllergy } from "../../controllers/allergy/createUserAllergy";
 import { validateAuthToken, validateShape } from "../../middlewares";
 import { createUserAllergyShape } from "../../shapes";
@@ -14,7 +15,7 @@ const userAllergyRoute = (app: Express) => {
     createUserAllergy
   );
 
-  // router.get("/allergies", validateAuthToken,)
+  router.get("/allergy", validateAuthToken, getUserAllergies);
 
   app.use("/user", router);
 };

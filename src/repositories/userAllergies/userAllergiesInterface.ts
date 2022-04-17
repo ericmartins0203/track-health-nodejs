@@ -23,8 +23,8 @@ interface IUserAllergy {
 }
 
 interface IUserAllergiesRepo {
-  findUserAllergies: () => Promise<UserAllergies[]>;
-  findUserallergyById: (id: string) => Promise<IUserAllergies>;
+  findUserAllergies: (id: string) => Promise<UserAllergies[]>;
+  findUserallergyById: (id: string) => Promise<UserAllergies[]>;
   saveUserAllergy: (allergy: IUserAllergy) => Promise<UserAllergies>;
 }
 

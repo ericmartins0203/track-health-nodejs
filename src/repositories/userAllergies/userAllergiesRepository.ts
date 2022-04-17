@@ -2,11 +2,7 @@
 import { Repository, getRepository } from "typeorm";
 
 import { UserAllergies } from "../../entities/allergy/UserAllergies";
-import {
-  IUserAllergies,
-  IUserAllergiesRepo,
-  IUserAllergy,
-} from "./userAllergiesInterface";
+import { IUserAllergiesRepo, IUserAllergy } from "./userAllergiesInterface";
 
 class UserAllergiesRepository implements IUserAllergiesRepo {
   private ormRepository: Repository<UserAllergies>;
@@ -15,9 +11,15 @@ class UserAllergiesRepository implements IUserAllergiesRepo {
     this.ormRepository = getRepository(UserAllergies);
   }
 
-  findUserAllergies = async () => await this.ormRepository.find();
+  findUserAllergies = async (id: string) =>
+    await this.ormRepository.find({
+      where: { user: { id } },
+    });
 
-  findUserallergyById: (id: string) => Promise<IUserAllergies>;
+  findUserallergyById = async (id: string) =>
+    await this.ormRepository.find({
+      where: { user: { id } },
+    });
   saveUserAllergy = async (allergy: IUserAllergy) =>
     await this.ormRepository.save(allergy);
 }

@@ -12,9 +12,8 @@ const createUserAllerService = async (
     allergy: { id, name: titleCaseFunction(name) },
   };
 
-  const userAllergie = new UserAllergiesRepository().saveUserAllergy(
-    userAllergieToCreate
-  );
+  const { user, ...userAllergie } =
+    await new UserAllergiesRepository().saveUserAllergy(userAllergieToCreate);
 
   return userAllergie;
 };
