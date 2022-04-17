@@ -10,6 +10,6 @@ export class Allergies {
   @Column({ type: "varchar", length: 100, nullable: false, unique: true })
   name: string;
 
-  @OneToMany(() => UserAllergies, (userAllergies) => userAllergies.allergies)
+  @OneToMany(() => UserAllergies, (userAllergies) => userAllergies.allergy)
   userAllergies: UserAllergies;
 }

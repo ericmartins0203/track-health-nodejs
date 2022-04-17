@@ -1,8 +1,20 @@
-import { UserAllergies } from "../../entities/UserAllergies";
+import { IUserAllergiesShape } from "../../interfaces";
 import { UserAllergiesRepository } from "../../repositories";
+import { titleCaseFunction } from "../../utils";
 
-const createUserAllerService = async (body: UserAllergies) => {
-  const userAllergie = new UserAllergiesRepository().saveUserAllergy(body);
+const createUserAllerService = async (
+  { id, name, description }: IUserAllergiesShape,
+  userId: string
+) => {
+  const userAllergieToCreate = {
+    user: { id: userId },
+    description,
+    allergy: { id, name: titleCaseFunction(name) },
+  };
+
+  const userAllergie = new UserAllergiesRepository().saveUserAllergy(
+    userAllergieToCreate
+  );
 
   return userAllergie;
 };

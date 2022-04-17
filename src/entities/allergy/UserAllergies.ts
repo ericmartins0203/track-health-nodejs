@@ -4,12 +4,14 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  Unique,
 } from "typeorm";
 
 import { User } from "../user/User";
 import { Allergies } from "./Allergies";
 
 @Entity("userAllergies")
+@Unique(["user", "allergy"])
 export class UserAllergies {
   @PrimaryGeneratedColumn("uuid")
   id: string;
@@ -20,11 +22,13 @@ export class UserAllergies {
   @JoinColumn()
   user: User;
 
-  @ManyToOne(() => Allergies, (allergies) => allergies.userAllergies, {
+  @ManyToOne(() => Allergies, (allergies) => allergies, {
     eager: true,
     cascade: true,
+    nullable: false,
   })
-  allergies: Allergies[];
+  @JoinColumn()
+  allergy: Allergies;
 
   @Column({ type: "varchar", length: 350, nullable: true })
   description: string;
