@@ -1,15 +1,17 @@
-import { createUserAllerService } from "./allergy/createUserAllergyService";
 import { getAllergiesServices } from "./allergy/getAllergiesService";
-import { getUserAllergiesServices } from "./allergy/getUserAllergiesServices";
 import { CreateUserService } from "./user/createUserService";
 import { getUserService } from "./user/getUserService";
 import { updateUserService } from "./user/updateUserService";
+import { createUserAllergyService } from "./userallergy/createUserAllergyService";
+import { getUserAllergiesServices } from "./userallergy/getUserAllergiesServices";
+import { updateUserAllergyService } from "./userallergy/updateUSerAllergyService";
 
 export {
   CreateUserService,
   getUserService,
   getAllergiesServices,
-  createUserAllerService,
+  createUserAllergyService,
   updateUserService,
   getUserAllergiesServices,
+  updateUserAllergyService,
 };

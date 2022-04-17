@@ -14,14 +14,20 @@ class UserAllergiesRepository implements IUserAllergiesRepo {
   findUserAllergies = async (id: string) =>
     await this.ormRepository.find({
       where: { user: { id } },
+      select: ["id", "description", "allergy"],
     });
 
-  findUserallergyById = async (id: string) =>
-    await this.ormRepository.find({
-      where: { user: { id } },
-    });
+  findUserAllergyById = async (id: string, userId: string) =>
+    (await this.ormRepository.findOne({
+      where: { id, user: { id: userId } },
+    })) as UserAllergies;
+
   saveUserAllergy = async (allergy: IUserAllergy) =>
     await this.ormRepository.save(allergy);
+
+  updateUserAllergy = async (id: string, description: string) => {
+    return await this.ormRepository.update({ id }, { description });
+  };
 }
 
 export { UserAllergiesRepository };

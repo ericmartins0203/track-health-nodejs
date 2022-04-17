@@ -24,7 +24,7 @@ export class UserAllergies {
 
   @ManyToOne(() => Allergies, (allergies) => allergies, {
     eager: true,
-    cascade: true,
+    cascade: ["insert"],
     nullable: false,
   })
   @JoinColumn()

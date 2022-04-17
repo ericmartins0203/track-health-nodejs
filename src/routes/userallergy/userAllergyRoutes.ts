@@ -1,7 +1,8 @@
 import { Express, Router } from "express";
 
 import { getUserAllergies } from "../../controllers";
-import { createUserAllergy } from "../../controllers/allergy/createUserAllergy";
+import { createUserAllergy } from "../../controllers/userallergy/createUserAllergy";
+import { updateUserAllergy } from "../../controllers/userallergy/updateUserAllergy";
 import { validateAuthToken, validateShape } from "../../middlewares";
 import { createUserAllergyShape } from "../../shapes";
 
@@ -15,7 +16,9 @@ const userAllergyRoute = (app: Express) => {
     createUserAllergy
   );
 
-  router.get("/allergy", validateAuthToken, getUserAllergies);
+  router.get("/allergies", validateAuthToken, getUserAllergies);
+
+  router.patch("/allergy/:allergyId", validateAuthToken, updateUserAllergy);
 
   app.use("/user", router);
 };

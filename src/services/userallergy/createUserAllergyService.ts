@@ -2,7 +2,7 @@ import { IUserAllergiesShape } from "../../interfaces";
 import { UserAllergiesRepository } from "../../repositories";
 import { titleCaseFunction } from "../../utils";
 
-const createUserAllerService = async (
+const createUserAllergyService = async (
   { id, name, description }: IUserAllergiesShape,
   userId: string
 ) => {
@@ -18,4 +18,4 @@ const createUserAllerService = async (
   return userAllergie;
 };
 
-export { createUserAllerService };
+export { createUserAllergyService };

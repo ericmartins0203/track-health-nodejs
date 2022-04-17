@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 
 import { IUserAllergiesShape } from "../../interfaces";
-import { createUserAllerService } from "../../services";
+import { createUserAllergyService } from "../../services";
 
 const createUserAllergy = async (req: Request, res: Response) => {
   try {
     const { id, name, description } = req.validate as IUserAllergiesShape;
     const { userId } = req.decoded;
 
-    const created = await createUserAllerService(
+    const created = await createUserAllergyService(
       { id, name, description },
       userId
     );

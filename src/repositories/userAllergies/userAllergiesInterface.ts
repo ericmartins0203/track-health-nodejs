@@ -1,3 +1,4 @@
+import { UpdateResult } from "typeorm";
 import { UserAllergies } from "../../entities/allergy/UserAllergies";
 
 interface IUserAllergies {
@@ -24,8 +25,9 @@ interface IUserAllergy {
 
 interface IUserAllergiesRepo {
   findUserAllergies: (id: string) => Promise<UserAllergies[]>;
-  findUserallergyById: (id: string) => Promise<UserAllergies[]>;
+  findUserAllergyById: (id: string, userId: string) => Promise<UserAllergies>;
   saveUserAllergy: (allergy: IUserAllergy) => Promise<UserAllergies>;
+  updateUserAllergy: (id: string, description: string) => Promise<UpdateResult>;
 }
 
 export { IUserAllergies, IUserAllergiesRepo, IUserAllergy };
