@@ -1,9 +1,10 @@
 import { getRepository, Repository } from "typeorm";
 
-import { UserDiseases } from "../../entities/disease/UserDisease";
+import { UserDiseases } from "../../entities";
 import {
   IUserDiseaseInterface,
   IUserDiseaseRepo,
+  IUserDiseaseUpdateInterface,
 } from "./InterfaceDiseaseRepository";
 
 class UserDiseaseRepository implements IUserDiseaseRepo {
@@ -13,8 +14,30 @@ class UserDiseaseRepository implements IUserDiseaseRepo {
     this.ormRepository = getRepository(UserDiseases);
   }
 
-  createUserDisease = async (userDisease: IUserDiseaseInterface) =>
-    this.ormRepository.save(userDisease);
+  getUserDisease = async (id: string) => {
+    return this.ormRepository
+      .createQueryBuilder("userDisease")
+      .leftJoinAndSelect("userDisease.user", "user")
+      .leftJoinAndSelect("userDisease.disease", "disease")
+      .where("user.id = :id", { id })
+      .select(["userDisease", "disease"])
+      .getMany();
+  };
+
+  createUserDisease = async (userDisease: IUserDiseaseInterface) => {
+    return this.ormRepository.save(userDisease);
+  };
+
+  updateUserDisease = async (
+    id: string,
+    userDisease: IUserDiseaseUpdateInterface
+  ) => {
+    return this.ormRepository.save({ ...userDisease, id });
+  };
+
+  deleteUserDisease = async (id: string) => {
+    return this.ormRepository.delete(id);
+  };
 }
 
 export { UserDiseaseRepository };

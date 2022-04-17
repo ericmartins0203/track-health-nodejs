@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 import { IDiseaseInterface } from "../../repositories/disease/InterfaceDiseaseRepository";
-import createDiseaseServices from "../../services/disease/createDiseaseServices";
+import { createDiseaseServices } from "../../services";
 
 const createDiseaseController = async (
   req: Request,
@@ -16,7 +16,7 @@ const createDiseaseController = async (
       medication as string,
       email
     );
-    return res.status(201).json({ disease });
+    return res.status(201).json(disease);
   } catch (error) {
     if (error instanceof Error) {
       return res.status(400).json({

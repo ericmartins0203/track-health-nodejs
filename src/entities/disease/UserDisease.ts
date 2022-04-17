@@ -1,7 +1,6 @@
 import {
   Column,
   Entity,
-  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
   Unique,
@@ -26,6 +25,5 @@ export class UserDiseases {
   user: User;
 
   @ManyToOne(() => Diseases, (userDisease) => userDisease.id)
-  @JoinColumn()
   disease: Diseases;
 }

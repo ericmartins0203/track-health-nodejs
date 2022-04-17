@@ -23,15 +23,21 @@ const createDiseaseServices = async (
     }
 
     const userDisease = await new UserDiseaseRepository().createUserDisease({
-      user,
-      disease,
+      user: { id: user.id as string },
+      disease: { id: disease.id, name: disease.name },
       description,
       medication,
     });
+
     // eslint-disable-next-line consistent-return
-    return userDisease;
+    return {
+      id: userDisease.id,
+      description: userDisease.description,
+      medication: userDisease.medication,
+      disease: userDisease.disease.name,
+    };
   } catch (err) {
-    throw new Error("Unexpected error");
+    throw new Error("Already exists");
   }
 };
 

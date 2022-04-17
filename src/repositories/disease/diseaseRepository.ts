@@ -17,12 +17,21 @@ class DiseaseRepository implements IDiseaseRepo {
     return disease;
   };
 
+  findById = async (id: string): Promise<IDiseaseInterface | undefined> => {
+    const disease = await this.ormRepository.findOne(id);
+    return disease;
+  };
+
   findAll = async () => {
     return this.ormRepository.find();
   };
 
   createDisease = async (disease: string) => {
     return this.ormRepository.save({ name: disease });
+  };
+
+  deleteDisease = async (id: string) => {
+    return this.ormRepository.delete(id);
   };
 }
 
