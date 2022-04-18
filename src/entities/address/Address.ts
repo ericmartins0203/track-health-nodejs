@@ -19,6 +19,9 @@ export class Address {
   @Column({ type: "varchar", length: 250, nullable: true })
   city: string;
 
+  @Column({ type: "varchar", length: 250 })
+  complement: string;
+
   @OneToOne(() => Doctors, (doctor) => doctor.name)
   doctor: Doctors;
 }
