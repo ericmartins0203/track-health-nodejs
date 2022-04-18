@@ -1,3 +1,5 @@
+import { DeleteResult, UpdateResult } from "typeorm";
+
 import { UserAllergies } from "../../entities/allergy/UserAllergies";
 
 interface IUserAllergies {
@@ -7,10 +9,27 @@ interface IUserAllergies {
   description?: string;
 }
 
-interface IUserAllergiesRepo {
-  findUserAllergies: () => Promise<UserAllergies[]>;
-  findUserallergyById: (id: string) => Promise<IUserAllergies>;
-  saveUserAllergy: (allergy: UserAllergies) => Promise<UserAllergies>;
+interface IUserDatas {
+  id: string;
 }
 
-export { IUserAllergies, IUserAllergiesRepo };
+interface IAllergyDatas {
+  id?: string;
+  name: string;
+}
+
+interface IUserAllergy {
+  user: IUserDatas;
+  description?: string;
+  allergy: IAllergyDatas;
+}
+
+interface IUserAllergiesRepo {
+  findUserAllergies: (id: string) => Promise<UserAllergies[]>;
+  findUserAllergyById: (id: string, userId: string) => Promise<UserAllergies>;
+  saveUserAllergy: (allergy: IUserAllergy) => Promise<UserAllergies>;
+  updateUserAllergy: (id: string, description: string) => Promise<UpdateResult>;
+  deleteUserAllergy: (id: string) => Promise<DeleteResult>;
+}
+
+export { IUserAllergies, IUserAllergiesRepo, IUserAllergy };

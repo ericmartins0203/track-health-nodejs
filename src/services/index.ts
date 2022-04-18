@@ -1,4 +1,3 @@
-import { createUserAllerService } from "./allergy/createUserAllergyService";
 import { getAllergiesServices } from "./allergy/getAllergiesService";
 import allDiseaseService from "./disease/allDiseaseService";
 import createNewDiseaseServices from "./disease/createNewDiseaseService";
@@ -10,6 +9,10 @@ import updateUserDiseaseService from "./user_disease/updateUserDiseaseService";
 import { CreateUserService } from "./user/createUserService";
 import { getUserService } from "./user/getUserService";
 import { updateUserService } from "./user/updateUserService";
+import { createUserAllergyService } from "./userallergy/createUserAllergyService";
+import { deleteUserAllergyService } from "./userallergy/deleteUserAllergyService";
+import { getUserAllergiesServices } from "./userallergy/getUserAllergiesServices";
+import { updateUserAllergyService } from "./userallergy/updateUSerAllergyService";
 
 export {
   CreateUserService,
@@ -22,6 +25,9 @@ export {
   getUserDiseaseService,
   allDiseaseService,
   getAllergiesServices,
-  createUserAllerService,
+  createUserAllergyService,
   updateUserService,
+  getUserAllergiesServices,
+  updateUserAllergyService,
+  deleteUserAllergyService,
 };

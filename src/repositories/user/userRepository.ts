@@ -1,3 +1,4 @@
+/* eslint-disable no-return-await */
 import { getRepository, Repository } from "typeorm";
 
 import { User } from "../../entities/user/User";
@@ -15,9 +16,10 @@ class UserRepository implements IUserRepo {
   findOne = async (email: string): Promise<IUserInterface | undefined> =>
     this.ormRepository
       .createQueryBuilder("user")
-      .addSelect("user.password")
       .where("user.email = :email", { email })
       .leftJoinAndSelect("user.userAllergies", "userAllergies")
+      .leftJoinAndSelect("userAllergies.allergy", "allergy")
+      .select(["user", "userAllergies", "allergy.name"])
       .getOne();
   findById = async (id: string): Promise<IUserInterface | undefined> =>
     this.ormRepository
