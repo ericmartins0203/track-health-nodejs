@@ -18,6 +18,9 @@ class UserRepository implements IUserRepo {
       .addSelect("user.password")
       .where("user.email = :email", { email })
       .leftJoinAndSelect("user.userAllergies", "userAllergies")
+      .leftJoinAndSelect("user.userDiseases", "userDiseases")
+      .leftJoinAndSelect("userDiseases.disease", "diseases")
+      .select(["user", "userDiseases", "diseases.name"])
       .getOne();
   findById = async (id: string): Promise<IUserInterface | undefined> =>
     this.ormRepository

@@ -33,8 +33,6 @@ export class User {
   @OneToMany(() => UserVaccine, (userVaccine) => userVaccine.vaccine)
   userVaccines: UserVaccine[];
 
-  @OneToMany(() => UserDiseases, (userDisease) => userDisease.disease, {
-    eager: true,
-  })
+  @OneToMany(() => UserDiseases, (userDiseases) => userDiseases.user)
   userDiseases: UserDiseases[];
 }

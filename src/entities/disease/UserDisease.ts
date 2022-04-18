@@ -21,9 +21,9 @@ export class UserDiseases {
   @Column({ type: "varchar", length: 250, nullable: true })
   medication: string;
 
-  @ManyToOne(() => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.userDiseases)
   user: User;
 
-  @ManyToOne(() => Diseases, (userDisease) => userDisease.id)
+  @ManyToOne(() => Diseases, (diseases) => diseases.name, { eager: true })
   disease: Diseases;
 }
