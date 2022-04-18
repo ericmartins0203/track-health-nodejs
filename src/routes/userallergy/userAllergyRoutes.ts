@@ -1,6 +1,6 @@
 import { Express, Router } from "express";
 
-import { getUserAllergies } from "../../controllers";
+import { deleteUserAllergy, getUserAllergies } from "../../controllers";
 import { createUserAllergy } from "../../controllers/userallergy/createUserAllergy";
 import { updateUserAllergy } from "../../controllers/userallergy/updateUserAllergy";
 import { validateAuthToken, validateShape } from "../../middlewares";
@@ -19,6 +19,8 @@ const userAllergyRoute = (app: Express) => {
   router.get("/allergies", validateAuthToken, getUserAllergies);
 
   router.patch("/allergy/:allergyId", validateAuthToken, updateUserAllergy);
+
+  router.delete("/allergy/:allergyId", validateAuthToken, deleteUserAllergy);
 
   app.use("/user", router);
 };

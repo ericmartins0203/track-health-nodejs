@@ -14,7 +14,6 @@ class UserAllergiesRepository implements IUserAllergiesRepo {
   findUserAllergies = async (id: string) =>
     await this.ormRepository.find({
       where: { user: { id } },
-      select: ["id", "description", "allergy"],
     });
 
   findUserAllergyById = async (id: string, userId: string) =>
@@ -27,6 +26,10 @@ class UserAllergiesRepository implements IUserAllergiesRepo {
 
   updateUserAllergy = async (id: string, description: string) => {
     return await this.ormRepository.update({ id }, { description });
+  };
+
+  deleteUserAllergy = async (id: string) => {
+    return await this.ormRepository.delete({ id });
   };
 }
 
