@@ -1,6 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 import { UserAllergies } from "../allergy/UserAllergies";
+import { UserDiseases } from "../disease/UserDisease";
 import { UserVaccine } from "../vaccine/userVaccine";
 
 @Entity("users")
@@ -31,4 +32,7 @@ export class User {
 
   @OneToMany(() => UserVaccine, (userVaccine) => userVaccine.vaccine)
   userVaccines: UserVaccine[];
+
+  @OneToMany(() => UserDiseases, (userDiseases) => userDiseases.user)
+  userDiseases: UserDiseases[];
 }
