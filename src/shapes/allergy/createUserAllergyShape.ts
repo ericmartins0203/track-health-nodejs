@@ -1,17 +1,9 @@
 import * as yup from "yup";
 
-import { titleCaseFunction } from "../../utils";
-
-const createUserAllergy = yup.object().shape({
-  userId: yup.string().trim().required(),
-  description: yup.string().trim(),
-  allergies: yup.object().shape({
-    allergiesId: yup.string().trim(),
-    name: yup
-      .string()
-      .trim()
-      .transform((value) => titleCaseFunction(value)),
-  }),
+const createUserAllergyShape = yup.object().shape({
+  id: yup.string().strict().trim(),
+  name: yup.string().trim().strict().required(),
+  description: yup.string().trim().strict(),
 });
 
-export default createUserAllergy;
+export { createUserAllergyShape };
