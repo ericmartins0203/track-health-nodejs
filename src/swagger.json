@@ -5,11 +5,21 @@
         "description": "This is an API Rest maked in NodeJs...",
         "version": "1.0.0"
     },
+    "servers": [
+        {
+            "url": "http://localhost:3000",
+            "Description": "API of development"
+        }
+    ],
     "paths": {
         "/user/allergy": {
             "post": {
+                "security": [{ 
+                    "bearerAuth": []
+                }] ,
+                "tags": ["Allergy"],
                 "summary": "Create a user allergy",
-                "description": "Add a new allergy to user or create a new allergy.",
+                "description": "Add a new allergy to user or create a new allergy. The fileds 'id' and 'description' is optional.",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -34,7 +44,29 @@
                             }
                         }
                     }
-                }
+                },
+                "responses": {
+                    "201": {
+                        "description":"Created"
+                    },
+                    "400": {
+                        "description": "Allergy already exists."
+                    },
+                    "401": {
+                        "description": "Missing authorization headers"
+                    }
+
+                }               
+            }
+        }
+        
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
             }
         }
     }
