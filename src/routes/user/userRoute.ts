@@ -6,7 +6,11 @@ import {
   updateUserController,
 } from "../../controllers";
 import { validateAuthToken, validateShape } from "../../middlewares";
-import { createUserShape, updateUserShape } from "../../shapes";
+import {
+  createUserShape,
+  createVaccineShape,
+  updateUserShape,
+} from "../../shapes";
 
 const userRoute = (app: Express) => {
   const userRoute = Router();
