@@ -4,20 +4,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
-const path_1 = __importDefault(require("path"));
 dotenv_1.default.config();
-exports.default = {
+const devConfig = {
     type: "postgres",
-    host: "localhost",
-    port: 5432,
-    username: process.env.POSTGRES_USERNAME,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTGRES_DB,
+    url: process.env.DATABASE_URL,
+    synchronize: true,
     logging: false,
-    entities: [path_1.default.join(__dirname, "../entities/**/*.*")],
-    migrations: [path_1.default.join(__dirname, "../migrations/**/*.*")],
+    entities: ["src/entities/**/*.*"],
+    migrations: ["src/migrations/**/*.*"],
     cli: {
-        entitiesDir: path_1.default.join(__dirname, "../entities"),
-        migrationsDir: path_1.default.join(__dirname, "../migrations"),
+        entitiesDir: "src/entities",
+        migrationsDir: "src/migrations",
     },
 };
+const prodConfig = {
+    type: "postgres",
+    url: process.env.DATABASE_URL,
+    logging: false,
+    ssl: { rejectUnauthorized: false },
+    entities: ["./dist/src/entities/**/*.*"],
+    migrations: ["./dist/src/migrations/**/*.*"],
+    cli: {
+        entitiesDir: "./dist/src/entities",
+        migrationsDir: "./dist/src/migrations",
+    },
+};
+exports.default = process.env.NODE_ENV === "production" ? prodConfig : devConfig;

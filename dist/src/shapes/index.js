@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateUserShape = exports.loginUserShape = exports.createUserShape = void 0;
+exports.createUserAllergyShape = exports.diseaseShape = exports.updateUserShape = exports.loginUserShape = exports.createUserShape = void 0;
+const createUserAllergyShape_1 = require("./allergy/createUserAllergyShape");
+Object.defineProperty(exports, "createUserAllergyShape", { enumerable: true, get: function () { return createUserAllergyShape_1.createUserAllergyShape; } });
+const diseaseShape_1 = require("./disease/diseaseShape");
+Object.defineProperty(exports, "diseaseShape", { enumerable: true, get: function () { return diseaseShape_1.diseaseShape; } });
 const loginShape_1 = require("./login/loginShape");
 Object.defineProperty(exports, "loginUserShape", { enumerable: true, get: function () { return loginShape_1.loginUserShape; } });
 const CreateUserShape_1 = require("./user/CreateUserShape");

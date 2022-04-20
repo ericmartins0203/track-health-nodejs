@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 
-import { deleteUserAllergyService } from "../../services";
+import { deleteUserAllergyService } from "../../services/userallergy/deleteUserAllergyService";
 
 const deleteUserAllergy = async (req: Request, res: Response) => {
   try {

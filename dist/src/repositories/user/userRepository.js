@@ -10,16 +10,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserRepository = void 0;
+/* eslint-disable no-return-await */
 const typeorm_1 = require("typeorm");
-const User_1 = require("../../entities/User");
+const User_1 = require("../../entities/user/User");
 class UserRepository {
     constructor() {
         this.createUser = (user) => __awaiter(this, void 0, void 0, function* () { return this.ormRepository.save(user); });
         this.findOne = (email) => __awaiter(this, void 0, void 0, function* () {
             return this.ormRepository
                 .createQueryBuilder("user")
-                .addSelect("user.password")
                 .where("user.email = :email", { email })
+                .leftJoinAndSelect("user.userAllergies", "userAllergies")
+                .leftJoinAndSelect("userAllergies.allergy", "allergy")
+                .leftJoinAndSelect("user.userDiseases", "userDiseases")
+                .leftJoinAndSelect("userDiseases.disease", "diseases")
+                .select([
+                "user",
+                "userDiseases",
+                "diseases.name",
+                "userAllergies",
+                "allergy.name",
+            ])
                 .getOne();
         });
         this.findById = (id) => __awaiter(this, void 0, void 0, function* () {

@@ -1,5 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserRepository = void 0;
+exports.UserDiseaseRepository = exports.DiseaseRepository = exports.UserAllergiesRepository = exports.AllergyRepository = exports.UserRepository = void 0;
+const allergyRepository_1 = require("./allergy/allergyRepository");
+Object.defineProperty(exports, "AllergyRepository", { enumerable: true, get: function () { return allergyRepository_1.AllergyRepository; } });
+const diseaseRepository_1 = require("./disease/diseaseRepository");
+Object.defineProperty(exports, "DiseaseRepository", { enumerable: true, get: function () { return diseaseRepository_1.DiseaseRepository; } });
+const userDiseaseRepository_1 = require("./disease/userDiseaseRepository");
+Object.defineProperty(exports, "UserDiseaseRepository", { enumerable: true, get: function () { return userDiseaseRepository_1.UserDiseaseRepository; } });
 const userRepository_1 = require("./user/userRepository");
 Object.defineProperty(exports, "UserRepository", { enumerable: true, get: function () { return userRepository_1.UserRepository; } });
+const userAllergiesRepository_1 = require("./userAllergies/userAllergiesRepository");
+Object.defineProperty(exports, "UserAllergiesRepository", { enumerable: true, get: function () { return userAllergiesRepository_1.UserAllergiesRepository; } });
