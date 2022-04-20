@@ -16,38 +16,46 @@
             "post": {
                 "security": [{ 
                     "bearerAuth": []
-                }] ,
+                }],
                 "tags": ["Allergy"],
                 "summary": "Create a user allergy",
-                "description": "Add a new allergy to user or create a new allergy. The fileds 'id' and 'description' is optional.",
+                "description": "Add a new allergy to user or create a new allergy. The fileds 'id' is optional when you want to create a new allergy. The field description is optional in any cases.",
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "type": "object", 
-                                "proprieties": {
-                                    "id": {
-                                        "type": "string"
-                                    },
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "description": {
-                                        "type": "string"
+                                "$ref": "#/components/schemas/Allergy"
+                            },                                
+                            "examples": {
+                                "existing allergy " : {
+                                    "value": {
+                                        "id": "45499c65-28db-49fb-8be5-357e1780f6b5",
+                                        "name": "Camarão",
+                                        "description": "Alergia a camarão detalhada, caso necessário."
                                     }
                                 },
-                                "example": {
-                                    "id": "Here some id existent Ex: wredfd-dsfDSFdsf",
-                                    "name": "Camarão",
-                                    "description": "Alergia a camarão detalhada, caso necessário."
+                                "new allergy": {
+                                    "value": {
+                                        "name": "Camarão",
+                                        "description": "Alergia a camarão detalhada, caso necessário."
+                                    }
                                 }
                             }
+                            
                         }
                     }
                 },
                 "responses": {
                     "201": {
-                        "description":"Created"
+                        "description":"Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/AllergyResponse"
+                                }
+                            }
+                        }
                     },
                     "400": {
                         "description": "Allergy already exists."
@@ -58,8 +66,235 @@
 
                 }               
             }
-        }
+        },
+        "/user/allergy/{id}": {
+            "patch": {
+                "security": [{ 
+                    "bearerAuth": []
+                }] ,
+                "description": "Update a user allergy description by id sended to route params.",
+                "summary": "Update a allergy description.",
+                "tags": ["Allergy"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User allergy id"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "proprierties": {
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "description": "A nice description here."
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description":"OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/AllergyResponse"
+                                },
+                                "example": {
+                                    "id": "9efc9b1c-33d1-4d16-8fa0-2b9f34dda55a",
+                                    "description": "Descrição alterada",
+                                    "allergy": {
+                                        "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                                        "name": "Alergia A Amendoin"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Missing authorization headers"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "proprierties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Allergy Not Found" : {
+                                        "value": {
+                                            "message": "Allergy Not Found"
+                                        }
+                                    },
+                                    "Invalid Type": {
+                                        "value": {
+                                            "message": "Type decription must be string."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            },
+            "delete": {
+                "security": [{ 
+                    "bearerAuth": []
+                }] ,
+                "description": "Delete a user allergy by id sended to route params.",
+                "summary": "Delete a user allergy.",
+                "tags": ["Allergy"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User allergy id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description":"OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "proprierties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "success"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Missing authorization headers"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "proprierties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                            "message": "Allergy Not Found"
+                                }                                    
+                                
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+        "/user/allergies": {
+            "get": {
+                "security": [{ 
+                    "bearerAuth": []
+                }],
+                "description": "Search all alergies registers by the user.",
+                "summary": "Search all user allergies",
+                "tags": ["Allergy"],
+                "responses": {
+                    "200": {
+                        "description":"OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {                                           
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/AllergyResponse"
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "id": "9efc9b1c-33d1-4d16-8fa0-2b9f34dda55a",
+                                        "description": "Descrição feliz",
+                                        "allergy": {
+                                            "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                                            "name": "Alergia A Batata"
+                                        }
+                                    },
+                                    {
+                                        "id": "944c9b1c-33d1-4d16-8fa0-2b9f34dda55a",
+                                        "description": "Descrição bolada",
+                                        "allergy": {
+                                            "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                                            "name": "Alergia A Melancia"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Missing authorization headers"
+                    }
+
+                }
+            }
         
+        },
+        "/allergies": {
+            "get": {
+                "security": [{ 
+                    "bearerAuth": []
+                }],
+                "description": "Search all alergies registers on table allergies.",
+                "summary": "Search all allergies",
+                "tags": ["Allergy"],
+                "responses": {
+                    "200": {
+                        "description":"OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {      
+                                    "$ref": "#/components/schemas/AllAllergies"
+                                    
+                                },
+                                "example": [
+                                    {                                        
+                                        "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                                        "name": "Alergia A Batata"                                        
+                                    },
+                                    {
+                                        "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                                        "name": "Alergia A Melancia"                                        
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Missing authorization headers"
+                    }
+                }
+            }
+        }
     },
     "components": {
         "securitySchemes": {
@@ -68,6 +303,63 @@
                 "scheme": "bearer",
                 "bearerFormat": "JWT"
             }
+        },
+        "schemas": {
+            "Allergy" : {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                }
+            },
+            "AllergyResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type":"string"
+                    },
+                    "allergy": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "AllAllergies": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
         }
+
     }
-}
+
+}           
