@@ -1,4 +1,4 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 import { Doctors } from "../doctor/Doctor";
 
@@ -22,6 +22,9 @@ export class Address {
   @Column({ type: "varchar", length: 250 })
   complement: string;
 
-  @OneToOne(() => Doctors, (doctor) => doctor.name)
-  doctor: Doctors;
+  @OneToMany(() => Doctors, (doctors) => doctors.address)
+  doctors: Doctors[];
+
+  // @OneToOne(() => Doctors, (doctor) => doctor.address)
+  // doctor: Doctors;
 }

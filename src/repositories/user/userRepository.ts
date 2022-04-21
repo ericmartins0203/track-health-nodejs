@@ -21,12 +21,18 @@ class UserRepository implements IUserRepo {
       .leftJoinAndSelect("userAllergies.allergy", "allergy")
       .leftJoinAndSelect("user.userDiseases", "userDiseases")
       .leftJoinAndSelect("userDiseases.disease", "diseases")
+      .leftJoinAndSelect("user.appointment", "appointment")
+      .leftJoinAndSelect("appointment.doctor", "doctor")
+      .leftJoinAndSelect("doctor.address", "address")
       .select([
         "user",
         "userDiseases",
         "diseases.name",
         "userAllergies",
         "allergy.name",
+        "appointment",
+        "doctor",
+        "address",
       ])
       .getOne();
   findById = async (id: string): Promise<IUserInterface | undefined> =>

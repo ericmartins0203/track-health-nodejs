@@ -4,6 +4,7 @@ import { Appointments } from "../../entities";
 import {
   IAppointmentInterface,
   IAppointmentRepo,
+  ICreateAppointmentInterface,
 } from "./interfaceAppointmentRepository";
 
 class AppointmentRepository implements IAppointmentRepo {
@@ -23,8 +24,8 @@ class AppointmentRepository implements IAppointmentRepo {
   };
 
   createAppointment = async (
-    appointment: IAppointmentInterface
-  ): Promise<IAppointmentInterface> => {
+    appointment: ICreateAppointmentInterface
+  ): Promise<Appointments> => {
     return this.ormRepository.save(appointment);
   };
 

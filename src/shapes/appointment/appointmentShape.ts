@@ -1,22 +1,32 @@
+import moment from "moment";
 import * as yup from "yup";
 
-const appontmentShape = yup.object().shape({
+const appointmentShape = yup.object().shape({
   id: yup.string().strict().trim(),
-  date: yup.date().strict().required(),
+  date: yup
+    .date()
+    .transform((value, originalValue, context) => {
+      if (context.isType(value)) return value;
+
+      const valueFormated = moment(originalValue, "dd/MM/yyyy");
+
+      return valueFormated.isValid() ? valueFormated.toDate() : new Date("");
+    })
+    .required(),
   description: yup.string().trim().strict(),
-  //   doctor: yup.object().shape({
-  //     id: yup.string().strict().trim(),
-  //     name: yup.string().trim().strict().required(),
-  //     type: yup.string().trim().strict().required(),
-  //     email: yup.string().trim().strict().required(),
-  //     phone: yup.string().trim().strict(),
-  //   }),
-  //   user: yup.object().shape({
-  //     id: yup.string().strict().trim(),
-  //     name: yup.string().trim().strict().required(),
-  //     email: yup.string().trim().strict().required(),
-  //     phone: yup.string().trim().strict(),
-  //   }),
+  doctorId: yup.string().strict().trim().required(),
 });
 
-export { appontmentShape };
+const updateAppointmentShape = yup.object().shape({
+  date: yup.date().transform((value, originalValue, context) => {
+    if (context.isType(value)) return value;
+
+    const valueFormated = moment(originalValue, "dd/MM/yyyy");
+
+    return valueFormated.isValid() ? valueFormated.toDate() : new Date("");
+  }),
+  description: yup.string().trim().strict(),
+  doctorId: yup.string().strict().trim(),
+});
+
+export { appointmentShape, updateAppointmentShape };

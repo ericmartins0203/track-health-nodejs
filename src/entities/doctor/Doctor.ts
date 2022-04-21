@@ -1,8 +1,8 @@
 import {
   Column,
   Entity,
+  ManyToOne,
   OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
 
@@ -20,7 +20,7 @@ export class Doctors {
   @Column({ type: "varchar", length: 50, nullable: false })
   type: string;
 
-  @Column({ type: "varchar", length: 50, nullable: false })
+  @Column({ type: "varchar", length: 50, nullable: false, unique: true })
   email: string;
 
   @Column({ type: "varchar", length: 50 })
@@ -29,9 +29,13 @@ export class Doctors {
   @Column({ type: "varchar", length: 50 })
   sex: string;
 
-  @OneToMany(() => Appointments, (appointment) => appointment.doctor)
+  @OneToMany(() => Appointments, (appointments) => appointments.doctor)
   appointment: Appointments[];
 
-  @OneToOne(() => Address, (address) => address)
+  @ManyToOne(() => Address, (address) => address.doctors, { eager: true })
   address: Address;
+
+  // @OneToOne(() => Address)
+  // @JoinColumn()
+  // address: Address;
 }
