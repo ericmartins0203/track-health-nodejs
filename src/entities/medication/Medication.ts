@@ -14,5 +14,5 @@ export class Medications {
     () => UserMedications,
     (userMedications) => userMedications.medication
   )
-  userAllergies: UserMedications;
+  userMedications: UserMedications;
 }
