@@ -1,22 +1,32 @@
 import dotenv from "dotenv";
-import path from "path";
 import { ConnectionOptions } from "typeorm";
 
 dotenv.config();
 
-export default {
+const devConfig = {
   type: "postgres",
-  host: "localhost",
-  port: 5432,
-  username: process.env.POSTGRES_USERNAME,
-  password: process.env.POSTGRES_PASSWORD,
-  database: process.env.POSTGRES_DB,
+  url: process.env.DATABASE_URL,
   synchronize: true,
   logging: false,
-  entities: [path.join(__dirname, "../entities/**/*.*")],
-  migrations: [path.join(__dirname, "../migrations/**/*.*")],
+  entities: ["src/entities/**/*.*"],
+  migrations: ["src/migrations/**/*.*"],
   cli: {
-    entitiesDir: path.join(__dirname, "../entities"),
-    migrationsDir: path.join(__dirname, "../migrations"),
+    entitiesDir: "src/entities",
+    migrationsDir: "src/migrations",
   },
 } as ConnectionOptions;
+
+const prodConfig = {
+  type: "postgres",
+  url: process.env.DATABASE_URL,
+  logging: false,
+  ssl: { rejectUnauthorized: false },
+  entities: ["./dist/src/entities/**/*.*"],
+  migrations: ["./dist/src/migrations/**/*.*"],
+  cli: {
+    entitiesDir: "./dist/src/entities",
+    migrationsDir: "./dist/src/migrations",
+  },
+} as ConnectionOptions;
+
+export default process.env.NODE_ENV === "production" ? prodConfig : devConfig;

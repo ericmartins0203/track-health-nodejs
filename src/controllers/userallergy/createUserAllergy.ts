@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { IUserAllergiesShape } from "../../interfaces";
+import { IUserAllergiesShape } from "../../interfaces/shapes/interfacesShapes";
 import { createUserAllergyService } from "../../services";
 
 const createUserAllergy = async (req: Request, res: Response) => {
