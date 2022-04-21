@@ -1,4 +1,5 @@
-import { AddressRepository, DoctorRepository } from "../../repositories";
+import { AddressRepository } from "../../repositories/address/addressRepository";
+import { DoctorRepository } from "../../repositories/doctor/doctorRepository";
 import { IDoctorInterface } from "../../repositories/doctor/interfaceDoctorRepository";
 
 const createDoctorService = async (

@@ -1,11 +1,9 @@
 import { Express, Router } from "express";
 
-import {
-  allAddressController,
-  createAddressController,
-  deleteAddressController,
-  updateAddressController,
-} from "../../controllers";
+import { allAddressController } from "../../controllers/address/allAddressController";
+import { createAddressController } from "../../controllers/address/createAddressController";
+import { deleteAddressController } from "../../controllers/address/deleteAddressController";
+import { updateAddressController } from "../../controllers/address/updateAddressController";
 import { validateAuthToken, validateShape } from "../../middlewares";
 import { addressShape } from "../../shapes";
 

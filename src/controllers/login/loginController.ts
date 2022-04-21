@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 
+import { IUserInterface } from "../../repositories/user/InterfaceUserRepository";
 import { loginServices } from "../../services/login/loginServices";
 
 const loginController = async (
@@ -7,7 +8,7 @@ const loginController = async (
   res: Response
 ): Promise<Response<Record<string, any>>> => {
   try {
-    const { email, password } = req.validate;
+    const { email, password } = req.validate as IUserInterface;
     const token = await loginServices(email, password);
     return res.json({ token });
   } catch (error) {

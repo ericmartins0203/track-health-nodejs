@@ -1,4 +1,4 @@
-import { UserDiseaseRepository } from "../../repositories";
+import { UserDiseaseRepository } from "../../repositories/disease/userDiseaseRepository";
 
 const deleteUserDiseaseService = async (id: string, userId: string) => {
   const userDisease = await new UserDiseaseRepository().getUserDisease(userId);

@@ -7,6 +7,7 @@ import {
 import { diseaseShape } from "./disease/diseaseShape";
 import { doctorShape, updateDoctorShape } from "./doctor/doctorShape";
 import { loginUserShape } from "./login/loginShape";
+import { createUserMedicationShape } from "./medication/createUserMedicationShape";
 import { createUserShape } from "./user/CreateUserShape";
 import { updateUserShape } from "./user/UpdateUserShape";
 
@@ -21,4 +22,5 @@ export {
   updateUserShape,
   diseaseShape,
   createUserAllergyShape,
+  createUserMedicationShape,
 };

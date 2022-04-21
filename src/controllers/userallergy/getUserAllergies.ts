@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { getUserAllergiesServices } from "../../services";
+import { getUserAllergiesServices } from "../../services/userallergy/getUserAllergiesServices";
 
 const getUserAllergies = async (req: Request, res: Response) => {
   try {

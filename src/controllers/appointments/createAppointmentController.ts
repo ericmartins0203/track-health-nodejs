@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 import { IAppointmentInterface } from "../../repositories/appointment/interfaceAppointmentRepository";
-import { createAppointmentService } from "../../services";
+import { createAppointmentService } from "../../services/appointments/createAppointmentService";
 
 const createAppointmentController = async (req: Request, res: Response) => {
   try {

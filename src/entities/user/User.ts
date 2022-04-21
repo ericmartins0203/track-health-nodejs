@@ -3,6 +3,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { UserAllergies } from "../allergy/UserAllergies";
 import { Appointments } from "../appointment/Appointment";
 import { UserDiseases } from "../disease/UserDisease";
+import { UserMedications } from "../medication/UserMedication";
 import { UserVaccine } from "../vaccine/userVaccine";
 
 @Entity("users")
@@ -39,4 +40,7 @@ export class User {
 
   @OneToMany(() => Appointments, (appointment) => appointment.user)
   appointment: Appointments[];
+
+  @OneToMany(() => UserMedications, (userMedications) => userMedications.user)
+  userMedications: UserMedications[];
 }

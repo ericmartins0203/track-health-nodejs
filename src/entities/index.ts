@@ -4,6 +4,8 @@ import { Appointments } from "./appointment/Appointment";
 import { Diseases } from "./disease/Disease";
 import { UserDiseases } from "./disease/UserDisease";
 import { Doctors } from "./doctor/Doctor";
+import { Medications } from "./medication/Medication";
+import { UserMedications } from "./medication/UserMedication";
 import { ProfileImage } from "./user/ProfileImage";
 import { User } from "./user/User";
 import { UserVaccine } from "./vaccine/userVaccine";
@@ -20,4 +22,6 @@ export {
   UserDiseases,
   UserVaccine,
   Vaccine,
+  UserMedications,
+  Medications,
 };
