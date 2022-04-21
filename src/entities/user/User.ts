@@ -1,5 +1,8 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
+import { UserAllergies } from "../allergy/UserAllergies";
+import { UserDiseases } from "../disease/UserDisease";
+import { UserMedications } from "../medication/UserMedication";
 import { UserVaccine } from "../vaccine/userVaccine";
 
 @Entity("users")
@@ -25,6 +28,15 @@ export class User {
   @Column({ nullable: true })
   sex: string;
 
+  @OneToMany(() => UserAllergies, (userAllergies) => userAllergies.user)
+  userAllergies: UserAllergies[];
+
   @OneToMany(() => UserVaccine, (userVaccine) => userVaccine.vaccine)
   userVaccines: UserVaccine[];
+
+  @OneToMany(() => UserDiseases, (userDiseases) => userDiseases.user)
+  userDiseases: UserDiseases[];
+
+  @OneToMany(() => UserMedications, (userMedications) => userMedications.user)
+  userMedications: UserMedications[];
 }

@@ -1,4 +1,4 @@
-import { UserVaccine, Vaccine } from "../../entities";
+import { UserVaccine } from "../../entities";
 
 interface IVaccineInterfaces {
   name: string;
