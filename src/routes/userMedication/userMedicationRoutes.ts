@@ -10,7 +10,7 @@ const userMedicationRoute = (app: Express) => {
   );
 
   route.get("/medications", validateAuthToken, (req, res) =>
-    res.json({ message: "its running ok" })
+    res.json({ message: "its running ok atualizou o docker" })
   );
 
   route.patch("/medication/:id", validateAuthToken, (req, res) =>
