@@ -1,18 +1,13 @@
 import { Request, Response } from "express";
 
-import { createUserMedicationService } from "../../services";
+import { getUserMedicationsService } from "../../services";
 
-const createUserMedicationController = async (req: Request, res: Response) => {
+const getUserMedicationsController = async (req: Request, res: Response) => {
   try {
-    const { validate } = req;
     const { userId } = req.decoded;
+    const userMedications = await getUserMedicationsService(userId);
 
-    const newUserMedication = await createUserMedicationService(
-      validate,
-      userId
-    );
-
-    return res.status(201).json(newUserMedication);
+    return res.status(200).json(userMedications);
   } catch (error: any) {
     if (error instanceof Error) {
       return res.status(400).json({
@@ -28,4 +23,4 @@ const createUserMedicationController = async (req: Request, res: Response) => {
   }
 };
 
-export { createUserMedicationController };
+export { getUserMedicationsController };

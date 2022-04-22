@@ -1,6 +1,9 @@
 import { Express, Router } from "express";
 
-import { createUserMedicationController } from "../../controllers";
+import {
+  createUserMedicationController,
+  getUserMedicationsController,
+} from "../../controllers";
 import { validateAuthToken, validateShape } from "../../middlewares";
 import { createUserMedicationShape } from "../../shapes";
 
@@ -14,9 +17,7 @@ const userMedicationRoute = (app: Express) => {
     createUserMedicationController
   );
 
-  route.get("/medications", validateAuthToken, (req, res) =>
-    res.json({ message: "its running ok atualizou o docker" })
-  );
+  route.get("/medications", validateAuthToken, getUserMedicationsController);
 
   route.patch("/medication/:id", validateAuthToken, (req, res) =>
     res.json({ message: "its running ok" })

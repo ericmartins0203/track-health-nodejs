@@ -15,6 +15,7 @@ import { deleteUserAllergyService } from "./userallergy/deleteUserAllergyService
 import { getUserAllergiesServices } from "./userallergy/getUserAllergiesServices";
 import { updateUserAllergyService } from "./userallergy/updateUSerAllergyService";
 import { createUserMedicationService } from "./userMedicaiton/createUserMedicationService";
+import { getUserMedicationsService } from "./userMedicaiton/getUserMedicationsService";
 
 export {
   CreateUserService,
@@ -34,4 +35,5 @@ export {
   deleteUserAllergyService,
   getMedicationsService,
   createUserMedicationService,
+  getUserMedicationsService,
 };
