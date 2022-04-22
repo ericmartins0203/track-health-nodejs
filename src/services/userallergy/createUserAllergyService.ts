@@ -1,9 +1,9 @@
-import { IUserAllergiesShape } from "../../interfaces";
+import { IUserTablesShape } from "../../interfaces";
 import { UserAllergiesRepository } from "../../repositories";
 import { titleCaseFunction } from "../../utils";
 
 const createUserAllergyService = async (
-  { id, name, description }: IUserAllergiesShape,
+  { id, name, description }: IUserTablesShape,
   userId: string
 ) => {
   const userAllergieToCreate = {
