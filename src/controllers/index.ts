@@ -3,6 +3,7 @@ import allDiseasesController from "./disease/allDiseasesController";
 import createNewDiseaseController from "./disease/createNewDiseaseController";
 import deleteDiseaseController from "./disease/deleteDiseaseController";
 import { loginController } from "./login/loginController";
+import { getMedicationsController } from "./medication/getMedicationsController";
 import { createUserController } from "./user/createUserController";
 import { getUserController } from "./user/getUserController";
 import { updateUserController } from "./user/updateUserController";
@@ -28,4 +29,5 @@ export {
   createDiseaseController,
   getUserAllergies,
   deleteUserAllergy,
+  getMedicationsController,
 };

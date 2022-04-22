@@ -1,7 +1,7 @@
 /* eslint-disable no-return-await */
 import { Repository, getRepository } from "typeorm";
 
-import { Allergies } from "../../entities/allergy/Allergies";
+import { Allergies } from "../../entities";
 import { IAllergyRepo } from "./interfaceAllergiesRepositories";
 
 class AllergyRepository implements IAllergyRepo {

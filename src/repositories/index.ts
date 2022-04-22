@@ -1,8 +1,10 @@
 import { AllergyRepository } from "./allergy/allergyRepository";
 import { DiseaseRepository } from "./disease/diseaseRepository";
 import { UserDiseaseRepository } from "./disease/userDiseaseRepository";
+import { MedicationRepository } from "./medication/medicationRepository";
 import { UserRepository } from "./user/userRepository";
 import { UserAllergiesRepository } from "./userAllergies/userAllergiesRepository";
+import { UserMedicationsRepository } from "./userMedications/userMedicationRepository";
 
 export {
   UserRepository,
@@ -10,4 +12,6 @@ export {
   UserAllergiesRepository,
   DiseaseRepository,
   UserDiseaseRepository,
+  MedicationRepository,
+  UserMedicationsRepository,
 };

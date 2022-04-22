@@ -2,6 +2,7 @@ import { getAllergiesServices } from "./allergy/getAllergiesService";
 import allDiseaseService from "./disease/allDiseaseService";
 import createNewDiseaseServices from "./disease/createNewDiseaseService";
 import deleteDiseaseService from "./disease/deleteDiseaseService";
+import { getMedicationsService } from "./medication/getMedicationServices";
 import createDiseaseServices from "./user_disease/createDiseaseService";
 import deleteUserDiseaseService from "./user_disease/deleteUserDiseaseService";
 import getUserDiseaseService from "./user_disease/getUserDiseaseService";
@@ -30,4 +31,5 @@ export {
   getUserAllergiesServices,
   updateUserAllergyService,
   deleteUserAllergyService,
+  getMedicationsService,
 };
