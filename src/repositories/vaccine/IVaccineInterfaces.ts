@@ -1,4 +1,4 @@
-import { UserVaccine } from "../../entities";
+import { UserVaccine, Vaccine } from "../../entities";
 
 interface IVaccineInterfaces {
   name: string;
@@ -23,7 +23,7 @@ interface IVaccineRepo {
   createVaccine: (vaccine: IVaccineDTO) => Promise<UserVaccine>;
   findVaccines: () => Promise<UserVaccine[]>;
   // findOne: (name: string) => Promise<IVaccineInterfaces | undefined>;
-  // findById: (id: string) => Promise<IVaccineInterfaces | undefined>;
+  findUserVaccine: (id: string) => Promise<UserVaccine[]>;
 }
 
 export { IVaccineInterfaces, IVaccineRepo, IVaccineDTO };

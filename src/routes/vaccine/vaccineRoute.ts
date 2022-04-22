@@ -1,6 +1,7 @@
 import { Express, Router } from "express";
 
 import { createVaccineController } from "../../controllers";
+import { getUserVaccineController } from "../../controllers/vaccine/getUserVaccineController";
 import { validateAuthToken, validateShape } from "../../middlewares";
 import { createVaccineShape } from "../../shapes";
 
@@ -13,6 +14,8 @@ const vaccineRoute = (app: Express) => {
     validateAuthToken,
     createVaccineController
   );
+
+  vaccineRoute.get("/vaccine", validateAuthToken, getUserVaccineController);
 
   app.use("/user", vaccineRoute);
 };

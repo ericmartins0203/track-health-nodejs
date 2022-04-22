@@ -21,12 +21,15 @@ class UserRepository implements IUserRepo {
       .leftJoinAndSelect("userAllergies.allergy", "allergy")
       .leftJoinAndSelect("user.userDiseases", "userDiseases")
       .leftJoinAndSelect("userDiseases.disease", "diseases")
+      .leftJoinAndSelect("user.userVaccines", "userVaccines")
+      .leftJoinAndSelect("userVaccines.vaccine", "vaccine")
       .select([
         "user",
         "userDiseases",
         "diseases.name",
         "userAllergies",
         "allergy.name",
+        "userVaccines",
       ])
       .getOne();
 

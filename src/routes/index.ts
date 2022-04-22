@@ -7,6 +7,7 @@ import { medicationsRoute } from "./medications/medicationRoute";
 import { userRoute } from "./user/userRoute";
 import { userAllergyRoute } from "./userallergy/userAllergyRoutes";
 import { userMedicationRoute } from "./userMedication/userMedicationRoutes";
+import { vaccineRoute } from "./vaccine/vaccineRoute";
 
 const routes = (app: Express) => {
   userRoute(app);
@@ -16,6 +17,7 @@ const routes = (app: Express) => {
   diseaseRoute(app);
   userMedicationRoute(app);
   medicationsRoute(app);
+  vaccineRoute(app);
 };
 
 export { routes };
