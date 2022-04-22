@@ -37,7 +37,7 @@ interface IUserMedicationsRepo {
     id: string,
     description: string
   ) => Promise<UpdateResult>;
-  deleteUserAllergy: (id: string) => Promise<DeleteResult>;
+  deleteUserMedication: (id: string) => Promise<DeleteResult>;
 }
 
 export { IUserMedicationsRepo, IUserMedications, IUserMedicationSave };

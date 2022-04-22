@@ -30,7 +30,7 @@ class UserMedicationsRepository implements IUserMedicationsRepo {
   updateUserMedication = async (id: string, description: string) =>
     await this.ormRepository.update({ id }, { description });
 
-  deleteUserAllergy = async (id: string) =>
+  deleteUserMedication = async (id: string) =>
     await this.ormRepository.delete({ id });
 }
 

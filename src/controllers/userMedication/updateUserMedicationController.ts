@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+
 import { updateUserMedicationService } from "../../services";
 
 const updateUserMedicationController = async (req: Request, res: Response) => {

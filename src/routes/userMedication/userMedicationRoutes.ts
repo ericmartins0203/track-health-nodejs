@@ -2,6 +2,7 @@ import { Express, Router } from "express";
 
 import {
   createUserMedicationController,
+  deleteUserMedicationController,
   getUserMedicationsController,
   updateUserMedicationController,
 } from "../../controllers";
@@ -26,8 +27,10 @@ const userMedicationRoute = (app: Express) => {
     updateUserMedicationController
   );
 
-  route.delete("/medication/:id", validateAuthToken, (req, res) =>
-    res.json({ message: "its running ok" })
+  route.delete(
+    "/medication/:id",
+    validateAuthToken,
+    deleteUserMedicationController
   );
 
   app.use("/user", route);
