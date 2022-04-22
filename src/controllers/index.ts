@@ -15,6 +15,7 @@ import getUserDiseaseController from "./userDisease/getUserDiseaseController";
 import updateUserDiseaseController from "./userDisease/updateUserDiseaseController";
 import { createUserMedicationController } from "./userMedication/createUserMedicationsController";
 import { getUserMedicationsController } from "./userMedication/getUserMedicationController";
+import { updateUserMedicationController } from "./userMedication/updateUserMedicationController";
 
 export {
   updateUserDiseaseController,
@@ -34,4 +35,5 @@ export {
   getMedicationsController,
   createUserMedicationController,
   getUserMedicationsController,
+  updateUserMedicationController,
 };

@@ -3,6 +3,7 @@ import { Express, Router } from "express";
 import {
   createUserMedicationController,
   getUserMedicationsController,
+  updateUserMedicationController,
 } from "../../controllers";
 import { validateAuthToken, validateShape } from "../../middlewares";
 import { createUserMedicationShape } from "../../shapes";
@@ -19,8 +20,10 @@ const userMedicationRoute = (app: Express) => {
 
   route.get("/medications", validateAuthToken, getUserMedicationsController);
 
-  route.patch("/medication/:id", validateAuthToken, (req, res) =>
-    res.json({ message: "its running ok" })
+  route.patch(
+    "/medication/:id",
+    validateAuthToken,
+    updateUserMedicationController
   );
 
   route.delete("/medication/:id", validateAuthToken, (req, res) =>

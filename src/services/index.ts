@@ -16,6 +16,7 @@ import { getUserAllergiesServices } from "./userallergy/getUserAllergiesServices
 import { updateUserAllergyService } from "./userallergy/updateUSerAllergyService";
 import { createUserMedicationService } from "./userMedicaiton/createUserMedicationService";
 import { getUserMedicationsService } from "./userMedicaiton/getUserMedicationsService";
+import { updateUserMedicationService } from "./userMedicaiton/updateMedicationService";
 
 export {
   CreateUserService,
@@ -36,4 +37,5 @@ export {
   getMedicationsService,
   createUserMedicationService,
   getUserMedicationsService,
+  updateUserMedicationService,
 };
