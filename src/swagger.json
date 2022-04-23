@@ -12,6 +12,89 @@
         }
     ],
     "paths": {
+        "/allergies": {
+            "get": {
+                "security": [{ 
+                    "bearerAuth": []
+                }],
+                "description": "Search all alergies registers on table allergies.",
+                "summary": "Search all allergies",
+                "tags": ["Allergy"],
+                "responses": {
+                    "200": {
+                        "description":"OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {      
+                                    "$ref": "#/components/schemas/DefaultFields"
+                                    
+                                },
+                                "example": [
+                                    {                                        
+                                        "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                                        "name": "Alergia A Batata"                                        
+                                    },
+                                    {
+                                        "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                                        "name": "Alergia A Melancia"                                        
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Missing authorization headers"
+                    }
+                }
+            }
+        },
+        "/user/allergies": {
+            "get": {
+                "security": [{ 
+                    "bearerAuth": []
+                }],
+                "description": "Search all alergies registers by the user.",
+                "summary": "Search all user allergies",
+                "tags": ["Allergy"],
+                "responses": {
+                    "200": {
+                        "description":"OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {                                           
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/AllergyResponse"
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "id": "9efc9b1c-33d1-4d16-8fa0-2b9f34dda55a",
+                                        "description": "Descrição feliz",
+                                        "allergy": {
+                                            "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                                            "name": "Alergia A Batata"
+                                        }
+                                    },
+                                    {
+                                        "id": "944c9b1c-33d1-4d16-8fa0-2b9f34dda55a",
+                                        "description": "Descrição bolada",
+                                        "allergy": {
+                                            "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                                            "name": "Alergia A Melancia"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Missing authorization headers"
+                    }
+        
+                }
+            }        
+        },
         "/user/allergy": {
             "post": {
                 "security": [{ 
@@ -24,7 +107,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Allergy"
+                                "$ref": "#/components/schemas/AllergyCreate"
                             },                                
                             "examples": {
                                 "existing allergy " : {
@@ -211,14 +294,50 @@
 
             }
         },
-        "/user/allergies": {
+        "/medications": {
             "get": {
                 "security": [{ 
                     "bearerAuth": []
                 }],
-                "description": "Search all alergies registers by the user.",
-                "summary": "Search all user allergies",
-                "tags": ["Allergy"],
+                "description": "Search all medications registers on table medications.",
+                "summary": "Search all medications",
+                "tags": ["Medication"],
+                "responses": {
+                    "200": {
+                        "description":"OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {      
+                                    "$ref": "#/components/schemas/DefaultFields"
+                                    
+                                },
+                                "example": [
+                                    {                                        
+                                        "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                                        "name": "Vicodin"                                        
+                                    },
+                                    {
+                                        "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                                        "name": "Amoxilina"                                        
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Missing authorization headers"
+                    }
+                }
+            }
+        },
+        "/user/medications": {
+            "get": {
+                "security": [{ 
+                    "bearerAuth": []
+                }],
+                "description": "Search all medications registers by the user.",
+                "summary": "Search all user medications",
+                "tags": ["Medication"],
                 "responses": {
                     "200": {
                         "description":"OK",
@@ -227,72 +346,234 @@
                                 "schema": {                                           
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/AllergyResponse"
+                                        "$ref": "#/components/schemas/UserMedicationResponse"
                                     }
                                 },
                                 "example": [
                                     {
                                         "id": "9efc9b1c-33d1-4d16-8fa0-2b9f34dda55a",
-                                        "description": "Descrição feliz",
+                                        "description": "75mg todos os dias.",
                                         "allergy": {
                                             "id": "1134a210-6f67-4707-b527-e22c19d43f32",
-                                            "name": "Alergia A Batata"
+                                            "name": "Puran T4"
                                         }
                                     },
                                     {
                                         "id": "944c9b1c-33d1-4d16-8fa0-2b9f34dda55a",
-                                        "description": "Descrição bolada",
+                                        "description": "Diariamente.",
                                         "allergy": {
                                             "id": "1134a210-6f67-4707-b527-e22c19d43f32",
-                                            "name": "Alergia A Melancia"
+                                            "name": "Rivotril"
                                         }
                                     }
                                 ]
                             }
                         }
+                    },
+                    "401": {
+                        "description": "Missing authorization headers"
+                    }
+        
+                }
+            }
+        },
+        "/user/medication": {
+            "post": {
+                "security": [{ 
+                    "bearerAuth": []
+                }],
+                "tags": ["Medication"],
+                "summary": "Create a user medication",
+                "description": "Add a new medication to user or create a new medication. The fileds 'id' is optional when you want to create a new medication. The field description is optional in any cases.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserMedicationCreate"
+                            },                                
+                            "examples": {
+                                "existing medication " : {
+                                    "value": {
+                                        "id": "45499c65-28db-49fb-8be5-357e1780f6b5",
+                                        "name": "Rivotril",
+                                        "description": "3x ao dia, por 5 anos."
+                                    }
+                                },
+                                "new medication": {
+                                    "value": {
+                                        "name": "Puran T4",
+                                        "description": "75mg todos os dias para tireoide."
+                                    }
+                                }
+                            }
+                            
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description":"Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/UserMedicationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Medication already exists."
                     },
                     "401": {
                         "description": "Missing authorization headers"
                     }
 
-                }
+                }               
             }
-        
         },
-        "/allergies": {
-            "get": {
+        "/user/medication/{id}": {
+            "patch": {
                 "security": [{ 
                     "bearerAuth": []
-                }],
-                "description": "Search all alergies registers on table allergies.",
-                "summary": "Search all allergies",
-                "tags": ["Allergy"],
+                }] ,
+                "description": "Update a user medication description by id sended to route params.",
+                "summary": "Update a medication description.",
+                "tags": ["Medication"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User medication id"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "proprierties": {
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "description": "A nice description here."
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description":"OK",
                         "content": {
                             "application/json": {
-                                "schema": {      
-                                    "$ref": "#/components/schemas/AllAllergies"
-                                    
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/UserMedicationResponse"
                                 },
-                                "example": [
-                                    {                                        
+                                "example": {
+                                    "id": "9efc9b1c-33d1-4d16-8fa0-2b9f34dda55a",
+                                    "description": "200mg",
+                                    "allergy": {
                                         "id": "1134a210-6f67-4707-b527-e22c19d43f32",
-                                        "name": "Alergia A Batata"                                        
-                                    },
-                                    {
-                                        "id": "1134a210-6f67-4707-b527-e22c19d43f32",
-                                        "name": "Alergia A Melancia"                                        
+                                        "name": "Eparina"
                                     }
-                                ]
+                                }
                             }
                         }
                     },
                     "401": {
                         "description": "Missing authorization headers"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "proprierties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Allergy Not Found" : {
+                                        "value": {
+                                            "message": "Medication Not Found"
+                                        }
+                                    },
+                                    "Invalid Type": {
+                                        "value": {
+                                            "message": "Type decription must be string."
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
+
+            },
+            "delete": {
+                "security": [{ 
+                    "bearerAuth": []
+                }] ,
+                "description": "Delete a user medication by id sended to route params.",
+                "summary": "Delete a user medication.",
+                "tags": ["Medication"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User medication id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description":"OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "proprierties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "success"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Missing authorization headers"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "proprierties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Medication Not Found"
+                                }                                    
+                                
+                            }
+                        }
+                    }
+                }
+
             }
         }
     },
@@ -305,7 +586,7 @@
             }
         },
         "schemas": {
-            "Allergy" : {
+            "AllergyCreate" : {
                 "type": "object",
                 "required": [
                     "name"
@@ -344,7 +625,7 @@
                     }
                 }
             },
-            "AllAllergies": {
+            "DefaultFields": {
                 "type": "array",
                 "items": {
                     "type": "object",
@@ -354,6 +635,45 @@
                         },
                         "name": {
                             "type": "string"
+                        }
+                    }
+                }
+            },
+            "UserMedicationCreate": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                }
+            },
+            "UserMedicationResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type":"string"
+                    },
+                    "medication": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
                         }
                     }
                 }
