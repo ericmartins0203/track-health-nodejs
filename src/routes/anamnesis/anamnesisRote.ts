@@ -1,27 +1,36 @@
 import { Express, Router } from "express";
 
-import { validateAuthToken } from "../../middlewares";
+import {
+  deleteAnamnesisController,
+  getAnamnesisController,
+  updateAnamnesisController,
+} from "../../controllers";
+import { createAnamnesisController } from "../../controllers/anamnesis/createAnamnesisController";
+import { validateAuthToken, validateShape } from "../../middlewares";
+import { createAnamnesisShape, updateAnamnesisShape } from "../../shapes";
 
 const anamnesisRoute = (app: Express) => {
   const route = Router();
 
-  route.post("", validateAuthToken, (req, res) =>
-    res.json({ message: "its running" })
+  route.post(
+    "/anamnesis",
+    validateAuthToken,
+    validateShape(createAnamnesisShape),
+    createAnamnesisController
   );
 
-  route.get("", validateAuthToken, (req, res) =>
-    res.json({ message: "its running" })
+  route.get("/anamnesis", validateAuthToken, getAnamnesisController);
+
+  route.patch(
+    "/anamnesis",
+    validateAuthToken,
+    validateShape(updateAnamnesisShape),
+    updateAnamnesisController
   );
 
-  route.patch("", validateAuthToken, (req, res) =>
-    res.json({ message: "its running" })
-  );
+  route.delete("/anamnesis", validateAuthToken, deleteAnamnesisController);
 
-  route.delete("", validateAuthToken, (req, res) =>
-    res.json({ message: "its running" })
-  );
-
-  app.use("/anamnesis", route);
+  app.use("/user", route);
 };
 
 export { anamnesisRoute };

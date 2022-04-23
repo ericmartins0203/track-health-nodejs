@@ -20,7 +20,7 @@ export class Anamnesis {
   allergy: boolean;
 
   @Column()
-  continuousMedications: boolean;
+  continuousMedication: boolean;
 
   @Column()
   surgery: boolean;

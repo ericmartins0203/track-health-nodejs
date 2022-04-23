@@ -1,4 +1,8 @@
 import { getAllergiesServices } from "./allergy/getAllergiesService";
+import { createAnamnesisService } from "./anamnesis/createAnamnesisServices";
+import { deleteAnamnesisService } from "./anamnesis/deleteAnamneseController";
+import { getAnamnesisService } from "./anamnesis/getAnamnesisService";
+import { updateAnamnesisServices } from "./anamnesis/updateAnamnesisServices";
 import allDiseaseService from "./disease/allDiseaseService";
 import createNewDiseaseServices from "./disease/createNewDiseaseService";
 import deleteDiseaseService from "./disease/deleteDiseaseService";
@@ -15,9 +19,9 @@ import { deleteUserAllergyService } from "./userallergy/deleteUserAllergyService
 import { getUserAllergiesServices } from "./userallergy/getUserAllergiesServices";
 import { updateUserAllergyService } from "./userallergy/updateUSerAllergyService";
 import { createUserMedicationService } from "./userMedicaiton/createUserMedicationService";
+import { deleteUserMedicationService } from "./userMedicaiton/deleteUserMedicationService";
 import { getUserMedicationsService } from "./userMedicaiton/getUserMedicationsService";
 import { updateUserMedicationService } from "./userMedicaiton/updateMedicationService";
-import { deleteUserMedicationService } from "./userMedicaiton/deleteUserMedicationService";
 
 export {
   CreateUserService,
@@ -40,4 +44,8 @@ export {
   getUserMedicationsService,
   updateUserMedicationService,
   deleteUserMedicationService,
+  createAnamnesisService,
+  getAnamnesisService,
+  updateAnamnesisServices,
+  deleteAnamnesisService,
 };
