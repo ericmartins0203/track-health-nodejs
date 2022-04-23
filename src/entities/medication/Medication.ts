@@ -12,7 +12,7 @@ export class Medications {
 
   @OneToMany(
     () => UserMedications,
-    (userMedications) => userMedications.medication
+    (userMedications) => userMedications.medication.name
   )
   userMedications: UserMedications;
 }

@@ -1,13 +1,12 @@
 import { Express, Router } from "express";
 
+import { getMedicationsController } from "../../controllers";
 import { validateAuthToken } from "../../middlewares";
 
 const medicationsRoute = (app: Express) => {
   const route = Router();
 
-  route.get("", validateAuthToken, (req, res) =>
-    res.json({ message: "its running" })
-  );
+  route.get("", validateAuthToken, getMedicationsController);
 
   app.use("/medications", route);
 };

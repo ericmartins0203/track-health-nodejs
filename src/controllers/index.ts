@@ -3,6 +3,7 @@ import allDiseasesController from "./disease/allDiseasesController";
 import createNewDiseaseController from "./disease/createNewDiseaseController";
 import deleteDiseaseController from "./disease/deleteDiseaseController";
 import { loginController } from "./login/loginController";
+import { getMedicationsController } from "./medication/getMedicationsController";
 import { createUserController } from "./user/createUserController";
 import { getUserController } from "./user/getUserController";
 import { updateUserController } from "./user/updateUserController";
@@ -12,6 +13,10 @@ import createDiseaseController from "./userDisease/createDiseaseController";
 import deleteUserDiseaseController from "./userDisease/deleteUserDiseaseController";
 import getUserDiseaseController from "./userDisease/getUserDiseaseController";
 import updateUserDiseaseController from "./userDisease/updateUserDiseaseController";
+import { createUserMedicationController } from "./userMedication/createUserMedicationsController";
+import { deleteUserMedicationController } from "./userMedication/deleteUserMedicationController";
+import { getUserMedicationsController } from "./userMedication/getUserMedicationController";
+import { updateUserMedicationController } from "./userMedication/updateUserMedicationController";
 
 export {
   updateUserDiseaseController,
@@ -28,4 +33,9 @@ export {
   createDiseaseController,
   getUserAllergies,
   deleteUserAllergy,
+  getMedicationsController,
+  createUserMedicationController,
+  getUserMedicationsController,
+  updateUserMedicationController,
+  deleteUserMedicationController,
 };

@@ -1,7 +1,7 @@
-interface IUserAllergiesShape {
+interface IUserTablesShape {
   id?: string;
   name: string;
   description?: string;
 }
 
-export { IUserAllergiesShape };
+export { IUserTablesShape };

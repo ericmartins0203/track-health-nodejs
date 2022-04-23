@@ -1,3 +1,4 @@
+import { Allergies } from "./allergy/Allergies";
 import { UserAllergies } from "./allergy/UserAllergies";
 import { Diseases } from "./disease/Disease";
 import { UserDiseases } from "./disease/UserDisease";
@@ -18,4 +19,5 @@ export {
   UserDiseases,
   UserMedications,
   Medications,
+  Allergies,
 };
