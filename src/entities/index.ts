@@ -4,6 +4,7 @@ import { Diseases } from "./disease/Disease";
 import { UserDiseases } from "./disease/UserDisease";
 import { Medications } from "./medication/Medication";
 import { UserMedications } from "./medication/UserMedication";
+import { Anamnesis } from "./user/Anamnesis";
 import { ProfileImage } from "./user/ProfileImage";
 import { User } from "./user/User";
 import { UserVaccine } from "./vaccine/userVaccine";
@@ -20,4 +21,5 @@ export {
   UserMedications,
   Medications,
   Allergies,
+  Anamnesis,
 };

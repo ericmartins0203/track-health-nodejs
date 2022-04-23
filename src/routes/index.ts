@@ -1,6 +1,7 @@
 import { Express } from "express";
 
 import { AllergyRoute } from "./allergies/allergyRoute";
+import { anamnesisRoute } from "./anamnesis/anamnesisRote";
 import { diseaseRoute } from "./disease/diseaseRoute";
 import { loginRoute } from "./login/loginRoute";
 import { medicationsRoute } from "./medications/medicationRoute";
@@ -16,6 +17,7 @@ const routes = (app: Express) => {
   diseaseRoute(app);
   userMedicationRoute(app);
   medicationsRoute(app);
+  anamnesisRoute(app);
 };
 
 export { routes };
