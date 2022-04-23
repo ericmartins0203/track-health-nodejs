@@ -18,4 +18,17 @@ interface IAnamnesisShape {
   hipertension: boolean;
 }
 
-export { IUserTablesShape, IAnamnesisShape };
+interface IAnamnesisShapeUpdate {
+  diseases?: boolean;
+  allergy?: boolean;
+  continuousMedications?: boolean;
+  surgery?: boolean;
+  alcoholic?: boolean;
+  drugUser?: boolean;
+  smoker?: boolean;
+  physicalActivity?: boolean;
+  diabetes?: boolean;
+  hipertension?: boolean;
+}
+
+export { IUserTablesShape, IAnamnesisShape, IAnamnesisShapeUpdate };

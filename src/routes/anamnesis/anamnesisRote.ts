@@ -1,8 +1,12 @@
 import { Express, Router } from "express";
-import { createAnamnesisController } from "../../controllers/anamnesis/createAnamnesisController";
 
+import {
+  getAnamnesisController,
+  updateAnamnesisController,
+} from "../../controllers";
+import { createAnamnesisController } from "../../controllers/anamnesis/createAnamnesisController";
 import { validateAuthToken, validateShape } from "../../middlewares";
-import { createAnamnesisShape } from "../../shapes";
+import { createAnamnesisShape, updateAnamnesisShape } from "../../shapes";
 
 const anamnesisRoute = (app: Express) => {
   const route = Router();
@@ -14,12 +18,13 @@ const anamnesisRoute = (app: Express) => {
     createAnamnesisController
   );
 
-  route.get("/anamnesis", validateAuthToken, (req, res) =>
-    res.json({ message: "its running" })
-  );
+  route.get("/anamnesis", validateAuthToken, getAnamnesisController);
 
-  route.patch("/anamnesis", validateAuthToken, (req, res) =>
-    res.json({ message: "its running" })
+  route.patch(
+    "/anamnesis",
+    validateAuthToken,
+    validateShape(updateAnamnesisShape),
+    updateAnamnesisController
   );
 
   route.delete("/anamnesis", validateAuthToken, (req, res) =>

@@ -1,7 +1,8 @@
 /* eslint-disable no-return-await */
-import { Repository, getRepository, DeleteResult, UpdateResult } from "typeorm";
+import { Repository, getRepository } from "typeorm";
 
 import { Anamnesis } from "../../entities";
+import { IAnamnesisShape } from "../../interfaces";
 import {
   IAnamnesis,
   IAnamnesisRepo,
@@ -14,16 +15,16 @@ class AnamnesisRepository implements IAnamnesisRepo {
   constructor() {
     this.ormRepsitory = getRepository(Anamnesis);
   }
-  findUserAnamnesis = async (id: string, userId: string) =>
+  findUserAnamnesis = async (userId: string) =>
     (await this.ormRepsitory.findOne({
-      where: { id, user: { id: userId } },
+      where: { user: { id: userId } },
     })) as IAnamnesis;
 
-  saveAnamnesis = async (anamnesis: IAnamnesis) =>
+  saveAnamnesis = async (anamnesis: IAnamnesisShape) =>
     await this.ormRepsitory.save(anamnesis);
 
   updateAnamnesis = async (id: string, updated: IAnamnesisUpdate) =>
-    await this.ormRepsitory.update({ id }, updated);
+    await this.ormRepsitory.update({ user: { id } }, updated);
 
   deleteAnamnesis = async (id: string) =>
     await this.ormRepsitory.delete({ id });

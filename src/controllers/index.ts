@@ -1,4 +1,6 @@
 import { getAllergies } from "./allergy/getAllergies";
+import { getAnamnesisController } from "./anamnesis/getAnamnesisController";
+import { updateAnamnesisController } from "./anamnesis/updateAnamnesisController";
 import allDiseasesController from "./disease/allDiseasesController";
 import createNewDiseaseController from "./disease/createNewDiseaseController";
 import deleteDiseaseController from "./disease/deleteDiseaseController";
@@ -38,4 +40,6 @@ export {
   getUserMedicationsController,
   updateUserMedicationController,
   deleteUserMedicationController,
+  getAnamnesisController,
+  updateAnamnesisController,
 };

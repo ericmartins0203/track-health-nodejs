@@ -1,12 +1,13 @@
 import { DeleteResult, UpdateResult } from "typeorm";
 
 import { Anamnesis } from "../../entities";
+import { IAnamnesisShape } from "../../interfaces";
 
 interface IAnamnesis {
   id?: string;
   diseases: boolean;
   allergy: boolean;
-  continuousMedications: boolean;
+  continuousMedication: boolean;
   surgery: boolean;
   alcoholic: boolean;
   drugUser: boolean;
@@ -19,7 +20,7 @@ interface IAnamnesis {
 interface IAnamnesisUpdate {
   diseases?: boolean;
   allergy?: boolean;
-  continuousMedications?: boolean;
+  continuousMedication?: boolean;
   surgery?: boolean;
   alcoholic?: boolean;
   drugUser?: boolean;
@@ -30,8 +31,8 @@ interface IAnamnesisUpdate {
 }
 
 interface IAnamnesisRepo {
-  findUserAnamnesis: (id: string, userId: string) => Promise<IAnamnesis>;
-  saveAnamnesis: (anamnesis: IAnamnesis) => Promise<IAnamnesis>;
+  findUserAnamnesis: (userId: string) => Promise<IAnamnesis>;
+  saveAnamnesis: (anamnesis: IAnamnesisShape) => Promise<IAnamnesis>;
   updateAnamnesis: (
     id: string,
     updated: IAnamnesisUpdate
