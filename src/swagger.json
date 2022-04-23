@@ -575,6 +575,45 @@
                 }
 
             }
+        },
+        "/user/anamnesis": {
+            "get": {
+                "security": [{ 
+                    "bearerAuth": []
+                }],
+                "description": "Search user anamnesis",
+                "summary": "Search user anamnesis",
+                "tags": ["Anamnesis"],
+                "responses": {
+                    "200": {
+                        "description":"OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {      
+                                    "$ref": "#/components/schemas/AnamnesisResponse"
+                                    
+                                },
+                                "example": {
+                                    "id": "132daf90-1a8e-46eb-918c-33fecbd88e94",
+                                    "diseases": true,
+                                    "allergy": true,
+                                    "continuousMedication": true,
+                                    "surgery": false,
+                                    "alcoholic": true,
+                                    "drugUser": false,
+                                    "smoker": true,
+                                    "physicalActivity": false,
+                                    "diabetes": false,
+                                    "hipertension": true
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Missing authorization headers"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -676,6 +715,42 @@
                             }
                         }
                     }
+                }
+            },
+            "AnamnesisResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "diseases": {
+                        "type":"boolean"
+                    },
+                    "continuousMedication": {
+                        "type": "boolean"
+                    }, 
+                    "surgery": {
+                        "type": "boolean"
+                    }, 
+                    "alcoholic": {
+                        "type": "boolean"
+                    }, 
+                    "drugUser": {
+                        "type": "boolean"
+                    }, 
+                    "smoker": {
+                        "type": "boolean"
+                    }, 
+                    "physicalActivity": {
+                        "type": "boolean"
+                    }, 
+                    "diabetes": {
+                        "type": "boolean"
+                    }, 
+                    "hipertension": {
+                        "type": "boolean"
+                    }
+
                 }
             }
         }
