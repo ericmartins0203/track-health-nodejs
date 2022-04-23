@@ -1,10 +1,10 @@
 import { UserMedicationsRepository } from "../../repositories";
 
 const deleteUserMedicationService = async (id: string, userId: string) => {
-  const userMecation =
+  const userMedication =
     await new UserMedicationsRepository().findUserMedicationById(id, userId);
 
-  if (!userMecation) {
+  if (!userMedication) {
     throw Error("Medication not found");
   }
 
