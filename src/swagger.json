@@ -575,6 +575,194 @@
                 }
 
             }
+        },
+        "/user/anamnesis": {
+            "get": {
+                "security": [{ 
+                    "bearerAuth": []
+                }],
+                "description": "Search user anamnesis",
+                "summary": "Search user anamnesis",
+                "tags": ["Anamnesis"],
+                "responses": {
+                    "200": {
+                        "description":"OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {      
+                                    "$ref": "#/components/schemas/AnamnesisResponse"
+                                    
+                                },
+                                "example": {
+                                    "id": "132daf90-1a8e-46eb-918c-33fecbd88e94",
+                                    "diseases": true,
+                                    "allergy": true,
+                                    "continuousMedication": true,
+                                    "surgery": false,
+                                    "alcoholic": true,
+                                    "drugUser": false,
+                                    "smoker": true,
+                                    "physicalActivity": false,
+                                    "diabetes": false,
+                                    "hipertension": true
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Missing authorization headers"
+                    }
+                }
+            },
+            "post": {
+                "security": [{ 
+                    "bearerAuth": []
+                }],
+                "tags": ["Anamnesis"],
+                "summary": "Create a user anamnesis",
+                "description": "Create a new anamnesis to user.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AnamnesisCreate"
+                            },                                
+                            "example": {
+                                "diseases": true,
+                                "allergy": true,
+                                "continuousMedication": true,
+                                "surgery": false,
+                                "alcoholic": true,
+                                "drugUser": false,
+                                "smoker": true,
+                                "physicalActivity": false,
+                                "diabetes": false,
+                                "hipertension": true
+                            }
+                            
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description":"Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/AnamnesisResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "proprierties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "example": {  
+                                    "message": "User already have a anamnesis."                                   
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Missing authorization headers"
+                    }
+
+                }               
+            },
+            "patch": {
+                "security": [{ 
+                    "bearerAuth": []
+                }],
+                "tags": ["Anamnesis"],
+                "summary": "Update user anamnesis.",
+                "description": "Update anamnesis.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AnamnesisUpdate"
+                            },                                
+                            "example": {
+                                "diseases": true,
+                                "allergy": true
+                            }
+                            
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description":"OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/AnamnesisResponse"
+                                },
+                                "example": {
+                                    "id": "cbb12d51-1f2f-4a73-971f-453361ab1073",
+                                    "diseases": true,
+                                    "allergy": true,
+                                    "continuousMedication": true,
+                                    "surgery": false,
+                                    "alcoholic": true,
+                                    "drugUser": false,
+                                    "smoker": true,
+                                    "physicalActivity": false,
+                                    "diabetes": false,
+                                    "hipertension": true
+                                }
+                            }                            
+                        }
+                        
+                    },
+                    "401": {
+                        "description": "Missing authorization headers"
+                    }
+
+                }               
+            },
+            "delete": {
+                "security": [{ 
+                    "bearerAuth": []
+                }],
+                "description": "Delete user anamnesis",
+                "summary": "Delete user anamnesis",
+                "tags": ["Anamnesis"],
+                "responses": {
+                    "200": {
+                        "description":"OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "proprierties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "success"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Missing authorization headers"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -677,7 +865,121 @@
                         }
                     }
                 }
+            },
+            "AnamnesisResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "diseases": {
+                        "type":"boolean"
+                    },
+                    "continuousMedication": {
+                        "type": "boolean"
+                    }, 
+                    "surgery": {
+                        "type": "boolean"
+                    }, 
+                    "alcoholic": {
+                        "type": "boolean"
+                    }, 
+                    "drugUser": {
+                        "type": "boolean"
+                    }, 
+                    "smoker": {
+                        "type": "boolean"
+                    }, 
+                    "physicalActivity": {
+                        "type": "boolean"
+                    }, 
+                    "diabetes": {
+                        "type": "boolean"
+                    }, 
+                    "hipertension": {
+                        "type": "boolean"
+                    }
+
+                }
+            },
+            "AnamnesisCreate": {
+                "type": "object",
+                "required": [
+                    "diseases",
+                    "continuousMedication",
+                    "surgery",
+                    "alcoholic",
+                    "drugUser",
+                    "smoker",
+                    "physicalActivity",
+                    "diabetes",
+                    "hipertension"
+                ],
+                "properties": {
+                    "diseases": {
+                        "type":"boolean"
+                    },
+                    "continuousMedication": {
+                        "type": "boolean"
+                    }, 
+                    "surgery": {
+                        "type": "boolean"
+                    }, 
+                    "alcoholic": {
+                        "type": "boolean"
+                    }, 
+                    "drugUser": {
+                        "type": "boolean"
+                    }, 
+                    "smoker": {
+                        "type": "boolean"
+                    }, 
+                    "physicalActivity": {
+                        "type": "boolean"
+                    }, 
+                    "diabetes": {
+                        "type": "boolean"
+                    }, 
+                    "hipertension": {
+                        "type": "boolean"
+                    }
+
+                }
+            },
+            "AnamnesisUpdate": {
+                "type": "object",
+                "properties": {
+                    "diseases": {
+                        "type":"boolean"
+                    },
+                    "continuousMedication": {
+                        "type": "boolean"
+                    }, 
+                    "surgery": {
+                        "type": "boolean"
+                    }, 
+                    "alcoholic": {
+                        "type": "boolean"
+                    }, 
+                    "drugUser": {
+                        "type": "boolean"
+                    }, 
+                    "smoker": {
+                        "type": "boolean"
+                    }, 
+                    "physicalActivity": {
+                        "type": "boolean"
+                    }, 
+                    "diabetes": {
+                        "type": "boolean"
+                    }, 
+                    "hipertension": {
+                        "type": "boolean"
+                    }
+
+                }
             }
+
         }
 
     }

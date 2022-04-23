@@ -14,7 +14,7 @@ const updateAnamnesisServices = async (
     userId
   );
 
-  return newAnamnesis;
+  return newAnamnesis || { message: "User don't have anamnesis." };
 };
 
 export { updateAnamnesisServices };
