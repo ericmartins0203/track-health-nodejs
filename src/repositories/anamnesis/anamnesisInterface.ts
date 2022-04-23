@@ -1,4 +1,5 @@
 import { DeleteResult, UpdateResult } from "typeorm";
+
 import { Anamnesis } from "../../entities";
 
 interface IAnamnesis {

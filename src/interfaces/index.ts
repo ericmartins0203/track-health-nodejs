@@ -1,4 +1,4 @@
 import { IDecoded } from "./middlewares/middlewares";
-import { IUserTablesShape } from "./shapes/interfacesShapes";
+import { IUserTablesShape, IAnamnesisShape } from "./shapes/interfacesShapes";
 
-export { IDecoded, IUserTablesShape };
+export { IDecoded, IUserTablesShape, IAnamnesisShape };

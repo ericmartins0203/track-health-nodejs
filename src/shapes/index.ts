@@ -4,6 +4,7 @@ import { loginUserShape } from "./login/loginShape";
 import { createUserMedicationShape } from "./medication/createUserMedicationShape";
 import { createUserShape } from "./user/CreateUserShape";
 import { updateUserShape } from "./user/UpdateUserShape";
+import { createAnamnesisShape } from "./anamnesis/createAnamnesisShape";
 
 export {
   createUserShape,
@@ -12,4 +13,5 @@ export {
   diseaseShape,
   createUserAllergyShape,
   createUserMedicationShape,
+  createAnamnesisShape,
 };
