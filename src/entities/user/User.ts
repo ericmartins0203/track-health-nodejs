@@ -1,9 +1,16 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 
 import { UserAllergies } from "../allergy/UserAllergies";
 import { UserDiseases } from "../disease/UserDisease";
 import { UserMedications } from "../medication/UserMedication";
 import { UserVaccine } from "../vaccine/userVaccine";
+import { Anamnesis } from "./Anamnesis";
 
 @Entity("users")
 export class User {
@@ -39,4 +46,7 @@ export class User {
 
   @OneToMany(() => UserMedications, (userMedications) => userMedications.user)
   userMedications: UserMedications[];
+
+  @OneToOne(() => Anamnesis, (anamnesis) => anamnesis.user)
+  anamnesis: Anamnesis;
 }
