@@ -27,7 +27,7 @@ class AnamnesisRepository implements IAnamnesisRepo {
     await this.ormRepsitory.update({ user: { id } }, updated);
 
   deleteAnamnesis = async (id: string) =>
-    await this.ormRepsitory.delete({ id });
+    await this.ormRepsitory.delete({ user: { id } });
 }
 
 export { AnamnesisRepository };

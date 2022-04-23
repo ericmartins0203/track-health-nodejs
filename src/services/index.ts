@@ -1,5 +1,6 @@
 import { getAllergiesServices } from "./allergy/getAllergiesService";
 import { createAnamnesisService } from "./anamnesis/createAnamnesisServices";
+import { deleteAnamnesisService } from "./anamnesis/deleteAnamneseController";
 import { getAnamnesisService } from "./anamnesis/getAnamnesisService";
 import { updateAnamnesisServices } from "./anamnesis/updateAnamnesisServices";
 import allDiseaseService from "./disease/allDiseaseService";
@@ -46,4 +47,5 @@ export {
   createAnamnesisService,
   getAnamnesisService,
   updateAnamnesisServices,
+  deleteAnamnesisService,
 };

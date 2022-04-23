@@ -1,6 +1,7 @@
 import { Express, Router } from "express";
 
 import {
+  deleteAnamnesisController,
   getAnamnesisController,
   updateAnamnesisController,
 } from "../../controllers";
@@ -27,9 +28,7 @@ const anamnesisRoute = (app: Express) => {
     updateAnamnesisController
   );
 
-  route.delete("/anamnesis", validateAuthToken, (req, res) =>
-    res.json({ message: "its running" })
-  );
+  route.delete("/anamnesis", validateAuthToken, deleteAnamnesisController);
 
   app.use("/user", route);
 };

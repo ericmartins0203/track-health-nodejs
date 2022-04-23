@@ -19,6 +19,7 @@ import { createUserMedicationController } from "./userMedication/createUserMedic
 import { deleteUserMedicationController } from "./userMedication/deleteUserMedicationController";
 import { getUserMedicationsController } from "./userMedication/getUserMedicationController";
 import { updateUserMedicationController } from "./userMedication/updateUserMedicationController";
+import { deleteAnamnesisController } from "./anamnesis/deleteAnamnesisController";
 
 export {
   updateUserDiseaseController,
@@ -42,4 +43,5 @@ export {
   deleteUserMedicationController,
   getAnamnesisController,
   updateAnamnesisController,
+  deleteAnamnesisController,
 };
