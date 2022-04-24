@@ -4,6 +4,7 @@ interface IProfileImage {
   id?: string;
   name: string;
   url: string;
+  key: string;
 }
 
 interface IProfileImageRepo {

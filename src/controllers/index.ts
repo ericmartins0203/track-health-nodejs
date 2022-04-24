@@ -1,4 +1,5 @@
 import { getAllergies } from "./allergy/getAllergies";
+import { deleteAnamnesisController } from "./anamnesis/deleteAnamnesisController";
 import { getAnamnesisController } from "./anamnesis/getAnamnesisController";
 import { updateAnamnesisController } from "./anamnesis/updateAnamnesisController";
 import allDiseasesController from "./disease/allDiseasesController";
@@ -6,6 +7,7 @@ import createNewDiseaseController from "./disease/createNewDiseaseController";
 import deleteDiseaseController from "./disease/deleteDiseaseController";
 import { loginController } from "./login/loginController";
 import { getMedicationsController } from "./medication/getMedicationsController";
+import { createProfileImageController } from "./profileImage.ts/createProfileImageController";
 import { createUserController } from "./user/createUserController";
 import { getUserController } from "./user/getUserController";
 import { updateUserController } from "./user/updateUserController";
@@ -19,7 +21,6 @@ import { createUserMedicationController } from "./userMedication/createUserMedic
 import { deleteUserMedicationController } from "./userMedication/deleteUserMedicationController";
 import { getUserMedicationsController } from "./userMedication/getUserMedicationController";
 import { updateUserMedicationController } from "./userMedication/updateUserMedicationController";
-import { deleteAnamnesisController } from "./anamnesis/deleteAnamnesisController";
 
 export {
   updateUserDiseaseController,
@@ -44,4 +45,5 @@ export {
   getAnamnesisController,
   updateAnamnesisController,
   deleteAnamnesisController,
+  createProfileImageController,
 };
