@@ -8,6 +8,8 @@ import deleteDiseaseController from "./disease/deleteDiseaseController";
 import { loginController } from "./login/loginController";
 import { getMedicationsController } from "./medication/getMedicationsController";
 import { createProfileImageController } from "./profileImage.ts/createProfileImageController";
+import { deleteProfileImageController } from "./profileImage.ts/deleteProfileImageController";
+import { getProfileImageController } from "./profileImage.ts/getProfileImageController";
 import { createUserController } from "./user/createUserController";
 import { getUserController } from "./user/getUserController";
 import { updateUserController } from "./user/updateUserController";
@@ -21,7 +23,6 @@ import { createUserMedicationController } from "./userMedication/createUserMedic
 import { deleteUserMedicationController } from "./userMedication/deleteUserMedicationController";
 import { getUserMedicationsController } from "./userMedication/getUserMedicationController";
 import { updateUserMedicationController } from "./userMedication/updateUserMedicationController";
-import { getProfileImageController } from "./profileImage.ts/getProfileImageController";
 
 export {
   updateUserDiseaseController,
@@ -48,4 +49,5 @@ export {
   deleteAnamnesisController,
   createProfileImageController,
   getProfileImageController,
+  deleteProfileImageController,
 };

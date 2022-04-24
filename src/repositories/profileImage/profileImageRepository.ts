@@ -14,7 +14,7 @@ class ProfileImageRepository implements IProfileImageRepo {
   findProfileImage = async (userId: string) =>
     (await this.ormRepository.findOne({
       where: { user: { id: userId } },
-      select: ["id", "name", "url"],
+      select: ["id", "name", "url", "key"],
     })) as IProfileImage;
 
   saveProfileImage = async (profileImage: IProfileImage) =>
