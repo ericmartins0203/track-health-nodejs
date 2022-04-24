@@ -7,6 +7,9 @@ import allDiseaseService from "./disease/allDiseaseService";
 import createNewDiseaseServices from "./disease/createNewDiseaseService";
 import deleteDiseaseService from "./disease/deleteDiseaseService";
 import { getMedicationsService } from "./medication/getMedicationServices";
+import { createProfileImageService } from "./profileImage/createProfileImageService";
+import { deleteProfileImageService } from "./profileImage/deleteProfileImageService";
+import { getProfileImageService } from "./profileImage/getProfileImageService";
 import createDiseaseServices from "./user_disease/createDiseaseService";
 import deleteUserDiseaseService from "./user_disease/deleteUserDiseaseService";
 import getUserDiseaseService from "./user_disease/getUserDiseaseService";
@@ -48,4 +51,7 @@ export {
   getAnamnesisService,
   updateAnamnesisServices,
   deleteAnamnesisService,
+  createProfileImageService,
+  getProfileImageService,
+  deleteProfileImageService,
 };

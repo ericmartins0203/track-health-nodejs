@@ -19,6 +19,9 @@ export class ProfileImage {
   @Column()
   url: string;
 
+  @Column()
+  key: string;
+
   @OneToOne(() => User, { nullable: false })
   @JoinColumn()
   user: User;

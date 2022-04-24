@@ -21,5 +21,12 @@ declare global {
         | IAnamnesisShapeUpdate;
       decoded: IDecoded;
     }
+
+    namespace Multer {
+      export interface File {
+        key: string;
+        location: string;
+      }
+    }
   }
 }
