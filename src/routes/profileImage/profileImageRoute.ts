@@ -1,9 +1,7 @@
 import { Express, Router } from "express";
-import multer from "multer";
 
-import { multerConfigs } from "../../configs/multer";
 import { createProfileImageController } from "../../controllers";
-import { validateAuthToken } from "../../middlewares";
+import { multerValidate, validateAuthToken } from "../../middlewares";
 
 const profileImageRoute = (app: Express) => {
   const route = Router();
@@ -11,7 +9,7 @@ const profileImageRoute = (app: Express) => {
   route.post(
     "/profileImage",
     validateAuthToken,
-    multer(multerConfigs("imageProfile")).single("file"),
+    multerValidate("imageProfile"),
     createProfileImageController
   );
 
