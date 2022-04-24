@@ -16,7 +16,7 @@ export class ProfileImage {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   url: string;
 
   @OneToOne(() => User, { nullable: false })

@@ -1,6 +1,5 @@
 import { DeleteResult, UpdateResult } from "typeorm";
 
-import { Anamnesis } from "../../entities";
 import { IAnamnesisShape } from "../../interfaces";
 
 interface IAnamnesis {

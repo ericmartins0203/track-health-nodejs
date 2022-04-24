@@ -10,24 +10,24 @@ import {
 } from "./anamnesisInterface";
 
 class AnamnesisRepository implements IAnamnesisRepo {
-  private ormRepsitory: Repository<Anamnesis>;
+  private ormRepository: Repository<Anamnesis>;
 
   constructor() {
-    this.ormRepsitory = getRepository(Anamnesis);
+    this.ormRepository = getRepository(Anamnesis);
   }
   findUserAnamnesis = async (userId: string) =>
-    (await this.ormRepsitory.findOne({
+    (await this.ormRepository.findOne({
       where: { user: { id: userId } },
     })) as IAnamnesis;
 
   saveAnamnesis = async (anamnesis: IAnamnesisShape) =>
-    await this.ormRepsitory.save(anamnesis);
+    await this.ormRepository.save(anamnesis);
 
   updateAnamnesis = async (id: string, updated: IAnamnesisUpdate) =>
-    await this.ormRepsitory.update({ user: { id } }, updated);
+    await this.ormRepository.update({ user: { id } }, updated);
 
   deleteAnamnesis = async (id: string) =>
-    await this.ormRepsitory.delete({ user: { id } });
+    await this.ormRepository.delete({ user: { id } });
 }
 
 export { AnamnesisRepository };
