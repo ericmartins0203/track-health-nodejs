@@ -21,6 +21,7 @@ import { createUserMedicationController } from "./userMedication/createUserMedic
 import { deleteUserMedicationController } from "./userMedication/deleteUserMedicationController";
 import { getUserMedicationsController } from "./userMedication/getUserMedicationController";
 import { updateUserMedicationController } from "./userMedication/updateUserMedicationController";
+import { getProfileImageController } from "./profileImage.ts/getProfileImageController";
 
 export {
   updateUserDiseaseController,
@@ -46,4 +47,5 @@ export {
   updateAnamnesisController,
   deleteAnamnesisController,
   createProfileImageController,
+  getProfileImageController,
 };

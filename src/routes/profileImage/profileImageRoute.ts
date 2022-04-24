@@ -1,6 +1,9 @@
 import { Express, Router } from "express";
 
-import { createProfileImageController } from "../../controllers";
+import {
+  createProfileImageController,
+  getProfileImageController,
+} from "../../controllers";
 import { multerValidate, validateAuthToken } from "../../middlewares";
 
 const profileImageRoute = (app: Express) => {
@@ -13,9 +16,7 @@ const profileImageRoute = (app: Express) => {
     createProfileImageController
   );
 
-  route.get("/profileImage", validateAuthToken, (req, res) => {
-    return res.json({ message: "its running." });
-  });
+  route.get("/profileImage", validateAuthToken, getProfileImageController);
 
   route.delete("/profileImage", validateAuthToken, (req, res) => {
     return res.json({ message: "its running." });

@@ -23,6 +23,7 @@ import { createUserMedicationService } from "./userMedicaiton/createUserMedicati
 import { deleteUserMedicationService } from "./userMedicaiton/deleteUserMedicationService";
 import { getUserMedicationsService } from "./userMedicaiton/getUserMedicationsService";
 import { updateUserMedicationService } from "./userMedicaiton/updateMedicationService";
+import { getProfileImageService } from "./profileImage/getProfileImageService";
 
 export {
   CreateUserService,
@@ -50,4 +51,5 @@ export {
   updateAnamnesisServices,
   deleteAnamnesisService,
   createProfileImageService,
+  getProfileImageService,
 };
