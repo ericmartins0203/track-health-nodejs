@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 
-import { IUserAllergiesShape } from "../../interfaces/shapes/interfacesShapes";
+import { IUserTablesShape } from "../../interfaces/shapes/interfacesShapes";
 import { createUserAllergyService } from "../../services";
 
 const createUserAllergy = async (req: Request, res: Response) => {
   try {
-    const { id, name, description } = req.validate as IUserAllergiesShape;
+    const { id, name, description } = req.validate as IUserTablesShape;
     const { userId } = req.decoded;
 
     const created = await createUserAllergyService(

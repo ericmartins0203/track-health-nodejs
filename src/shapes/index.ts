@@ -1,5 +1,7 @@
 import { addressShape } from "./address/addressShape";
 import { createUserAllergyShape } from "./allergy/createUserAllergyShape";
+import { createAnamnesisShape } from "./anamnesis/createAnamnesisShape";
+import { updateAnamnesisShape } from "./anamnesis/updateAnamnesisShape";
 import {
   appointmentShape,
   updateAppointmentShape,
@@ -23,4 +25,6 @@ export {
   diseaseShape,
   createUserAllergyShape,
   createUserMedicationShape,
+  createAnamnesisShape,
+  updateAnamnesisShape,
 };
