@@ -10,11 +10,10 @@ const addressShape = yup.object().shape({
 });
 
 const updateAddressShape = yup.object().shape({
-  id: yup.string().strict().trim(),
-  street: yup.string().trim().strict().required(),
-  number: yup.number().strict().required(),
-  district: yup.string().trim().strict().required(),
-  city: yup.string().trim().strict().required(),
+  street: yup.string().trim().strict(),
+  number: yup.number().strict(),
+  district: yup.string().trim().strict(),
+  city: yup.string().trim().strict(),
   complement: yup.string().trim().strict(),
 });
 

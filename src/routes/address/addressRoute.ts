@@ -6,6 +6,7 @@ import { deleteAddressController } from "../../controllers/address/deleteAddress
 import { updateAddressController } from "../../controllers/address/updateAddressController";
 import { validateAuthToken, validateShape } from "../../middlewares";
 import { addressShape } from "../../shapes";
+import { updateAddressShape } from "../../shapes/address/addressShape";
 
 const addressRoute = (app: Express) => {
   const addressRouter = Router();
@@ -21,7 +22,7 @@ const addressRoute = (app: Express) => {
   addressRouter.patch(
     "/:id",
     validateAuthToken,
-    validateShape(addressShape),
+    validateShape(updateAddressShape),
     updateAddressController
   );
 

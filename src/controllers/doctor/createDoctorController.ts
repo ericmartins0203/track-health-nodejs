@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 import { IDoctorInterface } from "../../repositories/doctor/interfaceDoctorRepository";
-import { createDoctorService } from "../../services";
+import { createDoctorService } from "../../services/doctor/createDoctorService";
 
 const createDoctorController = async (req: Request, res: Response) => {
   try {
@@ -15,6 +15,7 @@ const createDoctorController = async (req: Request, res: Response) => {
       sex,
       addressId
     );
+
     return res
       .status(201)
       .json({ message: "Doctor created successfully", doctor });

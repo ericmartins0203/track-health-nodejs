@@ -3,9 +3,9 @@
 
 import { IDecoded, IUserAllergiesShape } from "../interfaces";
 import { IAddressInterface } from "../repositories/address/interfaceAddressRepository";
-import { ICreateAppointmentInterface } from "../repositories/appointment/interfaceAppointmentRepository";
+import { IAppointmentInterface } from "../repositories/appointment/interfaceAppointmentRepository";
 import { IDiseaseInterface } from "../repositories/disease/InterfaceDiseaseRepository";
-import { ICreateDoctorInterface } from "../repositories/doctor/interfaceDoctorRepository";
+import { IDoctorInterface } from "../repositories/doctor/interfaceDoctorRepository";
 import { IUserInterface } from "../repositories/user/InterfaceUserRepository";
 
 declare global {
@@ -15,9 +15,9 @@ declare global {
         | IUserInterface
         | IDiseaseInterface
         | IUserAllergiesShape
-        | ICreateAppointmentInterface
-        | ICreateDoctorInterface
-        | IAddressInterface;
+        | IDoctorInterface
+        | IAddressInterface
+        | IAppointmentInterface;
       decoded: IDecoded;
     }
   }

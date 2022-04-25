@@ -34,8 +34,4 @@ export class Doctors {
 
   @ManyToOne(() => Address, (address) => address.doctors, { eager: true })
   address: Address;
-
-  // @OneToOne(() => Address)
-  // @JoinColumn()
-  // address: Address;
 }

@@ -24,7 +24,4 @@ export class Address {
 
   @OneToMany(() => Doctors, (doctors) => doctors.address)
   doctors: Doctors[];
-
-  // @OneToOne(() => Doctors, (doctor) => doctor.address)
-  // doctor: Doctors;
 }
