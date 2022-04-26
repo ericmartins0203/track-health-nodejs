@@ -7,8 +7,12 @@ import {
   IDecoded,
   IUserTablesShape,
 } from "../interfaces";
+import { IAddressInterface } from "../repositories/address/interfaceAddressRepository";
+import { IAppointmentInterface } from "../repositories/appointment/interfaceAppointmentRepository";
 import { IDiseaseInterface } from "../repositories/disease/InterfaceDiseaseRepository";
+import { IDoctorInterface } from "../repositories/doctor/interfaceDoctorRepository";
 import { IUserInterface } from "../repositories/user/InterfaceUserRepository";
+import { IUserAllergies } from "../repositories/userAllergies/userAllergiesInterface";
 
 declare global {
   namespace Express {
@@ -16,6 +20,10 @@ declare global {
       validate:
         | IUserInterface
         | IDiseaseInterface
+        | IUserAllergies
+        | IDoctorInterface
+        | IAddressInterface
+        | IAppointmentInterface
         | IUserTablesShape
         | IAnamnesisShape
         | IAnamnesisShapeUpdate;
