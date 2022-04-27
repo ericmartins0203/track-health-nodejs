@@ -10,6 +10,7 @@ import { UserAllergies } from "../allergy/UserAllergies";
 import { Appointments } from "../appointment/Appointment";
 import { UserDiseases } from "../disease/UserDisease";
 import { UserMedications } from "../medication/UserMedication";
+import { UserSurgery } from "../surgery/UserSurgery";
 import { UserVaccine } from "../vaccine/userVaccine";
 import { Anamnesis } from "./Anamnesis";
 import { ProfileImage } from "./ProfileImage";
@@ -51,6 +52,9 @@ export class User {
 
   @OneToMany(() => UserMedications, (userMedications) => userMedications.user)
   userMedications: UserMedications[];
+
+  @OneToMany(() => UserSurgery, (userSurgery) => userSurgery.user)
+  userSurgery: UserSurgery[];
 
   @OneToOne(() => Anamnesis, (anamnesis) => anamnesis.user)
   anamnesis: Anamnesis;

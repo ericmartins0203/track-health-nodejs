@@ -10,6 +10,7 @@ import { diseaseShape } from "./disease/diseaseShape";
 import { doctorShape, updateDoctorShape } from "./doctor/doctorShape";
 import { loginUserShape } from "./login/loginShape";
 import { createUserMedicationShape } from "./medication/createUserMedicationShape";
+import { surgeryShape } from "./surgery/createSurgeryShape";
 import { createUserShape } from "./user/CreateUserShape";
 import { updateUserShape } from "./user/UpdateUserShape";
 import { createVaccineShape } from "./vaccine/createVaccineShape";
@@ -29,4 +30,5 @@ export {
   createUserMedicationShape,
   createAnamnesisShape,
   updateAnamnesisShape,
+  surgeryShape,
 };

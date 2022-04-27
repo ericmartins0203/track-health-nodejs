@@ -9,6 +9,7 @@ import { doctorRoute } from "./doctor/doctorRoute";
 import { loginRoute } from "./login/loginRoute";
 import { medicationsRoute } from "./medications/medicationRoute";
 import { profileImageRoute } from "./profileImage/profileImageRoute";
+import { surgeryRoute } from "./surgery/surgeryRoute";
 import { userRoute } from "./user/userRoute";
 import { userAllergyRoute } from "./userallergy/userAllergyRoutes";
 import { userMedicationRoute } from "./userMedication/userMedicationRoutes";
@@ -28,6 +29,7 @@ const routes = (app: Express) => {
   vaccineRoute(app);
   anamnesisRoute(app);
   profileImageRoute(app);
+  surgeryRoute(app);
 };
 
 export { routes };
