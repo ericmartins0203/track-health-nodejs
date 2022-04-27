@@ -1,11 +1,23 @@
+import { allAddressService } from "./address/allAddressService";
+import { createAddressService } from "./address/createAddressService";
+import { deleteAddressService } from "./address/deleteAddressService";
+import { updateAddressService } from "./address/updateAddressService";
 import { getAllergiesServices } from "./allergy/getAllergiesService";
 import { createAnamnesisService } from "./anamnesis/createAnamnesisServices";
 import { deleteAnamnesisService } from "./anamnesis/deleteAnamneseController";
 import { getAnamnesisService } from "./anamnesis/getAnamnesisService";
 import { updateAnamnesisServices } from "./anamnesis/updateAnamnesisServices";
+import { AllAppointmentsService } from "./appointments/allAppointmentsService";
+import { createAppointmentService } from "./appointments/createAppointmentService";
+import { deleteAppointmentService } from "./appointments/deleteAppointmentService";
+import { updateAppointmentService } from "./appointments/updateAppointmentService";
 import allDiseaseService from "./disease/allDiseaseService";
 import createNewDiseaseServices from "./disease/createNewDiseaseService";
 import deleteDiseaseService from "./disease/deleteDiseaseService";
+import { allDoctorService } from "./doctor/allDoctorService";
+import { createDoctorService } from "./doctor/createDoctorService";
+import { deleteDoctorService } from "./doctor/deleteDoctorService";
+import { updateDoctorService } from "./doctor/updateDoctorService";
 import { getMedicationsService } from "./medication/getMedicationServices";
 import { createProfileImageService } from "./profileImage/createProfileImageService";
 import { deleteProfileImageService } from "./profileImage/deleteProfileImageService";
@@ -31,6 +43,18 @@ import { updateUserVaccineService } from "./vaccine/updateUserVaccineService";
 
 export {
   createVaccineService,
+  allDoctorService,
+  updateDoctorService,
+  deleteDoctorService,
+  createAddressService,
+  allAddressService,
+  updateAddressService,
+  deleteAddressService,
+  AllAppointmentsService,
+  createAppointmentService,
+  updateAppointmentService,
+  deleteAppointmentService,
+  createDoctorService,
   CreateUserService,
   updateUserDiseaseService,
   deleteUserDiseaseService,

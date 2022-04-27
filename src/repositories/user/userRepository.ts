@@ -22,6 +22,9 @@ class UserRepository implements IUserRepo {
       .leftJoinAndSelect("userDiseases.disease", "diseases")
       .leftJoinAndSelect("user.userVaccines", "userVaccines")
       .leftJoinAndSelect("userVaccines.vaccine", "vaccine")
+      .leftJoinAndSelect("user.appointment", "appointment")
+      .leftJoinAndSelect("appointment.doctor", "doctor")
+      .leftJoinAndSelect("doctor.address", "address")
       .leftJoinAndSelect("user.userMedications", "userMedications")
       .leftJoinAndSelect("userMedications.medication", "medication")
       .leftJoinAndSelect("user.anamnesis", "anamnesis")
@@ -32,6 +35,9 @@ class UserRepository implements IUserRepo {
         "userAllergies",
         "allergy.name",
         "userVaccines",
+        "appointment",
+        "doctor",
+        "address",
         "userMedications",
         "medication.name",
         "anamnesis",
