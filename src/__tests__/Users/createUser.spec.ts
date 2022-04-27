@@ -7,6 +7,7 @@ import { UserRepository } from "../../repositories";
 
 import { ConnectionTestJest } from "..";
 
+// @ts-ignore
 describe("Create User", () => {
   beforeAll(async () => {
     await new ConnectionTestJest().create();
