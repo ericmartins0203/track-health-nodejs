@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 
+import { IUserInterface } from "../../repositories/user/InterfaceUserRepository";
 import { updateUserService } from "../../services";
 
 const updateUserController = async (request: Request, response: Response) => {
   try {
     const user = await updateUserService(
-      request.validate,
+      request.validate as Partial<IUserInterface>,
       request.decoded.userId
     );
     return response.status(200).json(user);
