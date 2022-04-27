@@ -24,6 +24,7 @@ import { deleteUserMedicationController } from "./userMedication/deleteUserMedic
 import { getUserMedicationsController } from "./userMedication/getUserMedicationController";
 import { updateUserMedicationController } from "./userMedication/updateUserMedicationController";
 import { createVaccineController } from "./vaccine/createVaccineController";
+import { deleteVaccineController } from "./vaccine/deleteVaccineController";
 import { updateVaccineController } from "./vaccine/updateVaccineController";
 
 export {
@@ -54,4 +55,5 @@ export {
   getProfileImageController,
   deleteProfileImageController,
   updateVaccineController,
+  deleteVaccineController,
 };

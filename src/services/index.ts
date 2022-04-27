@@ -17,7 +17,6 @@ import updateUserDiseaseService from "./user_disease/updateUserDiseaseService";
 import { CreateUserService } from "./user/createUserService";
 import { getUserService } from "./user/getUserService";
 import { updateUserService } from "./user/updateUserService";
-import { updateUserVaccineService } from "./user/updateUserVaccineService";
 import { createUserAllergyService } from "./userallergy/createUserAllergyService";
 import { deleteUserAllergyService } from "./userallergy/deleteUserAllergyService";
 import { getUserAllergiesServices } from "./userallergy/getUserAllergiesServices";
@@ -27,6 +26,8 @@ import { deleteUserMedicationService } from "./userMedicaiton/deleteUserMedicati
 import { getUserMedicationsService } from "./userMedicaiton/getUserMedicationsService";
 import { updateUserMedicationService } from "./userMedicaiton/updateMedicationService";
 import { createVaccineService } from "./vaccine/CreateVaccineService";
+import { deleteUserVaccineService } from "./vaccine/deleteUserVaccineService";
+import { updateUserVaccineService } from "./vaccine/updateUserVaccineService";
 
 export {
   createVaccineService,
@@ -58,4 +59,5 @@ export {
   getProfileImageService,
   deleteProfileImageService,
   updateUserVaccineService,
+  deleteUserVaccineService,
 };

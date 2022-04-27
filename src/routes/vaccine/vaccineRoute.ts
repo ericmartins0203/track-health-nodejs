@@ -2,6 +2,7 @@ import { Express, Router } from "express";
 
 import {
   createVaccineController,
+  deleteVaccineController,
   updateVaccineController,
 } from "../../controllers";
 import { getUserVaccineController } from "../../controllers/vaccine/getUserVaccineController";
@@ -26,6 +27,11 @@ const vaccineRoute = (app: Express) => {
     updateVaccineController
   );
 
+  vaccineRoute.delete(
+    "/vaccine/:vaccineId",
+    validateAuthToken,
+    deleteVaccineController
+  );
   app.use("/user", vaccineRoute);
 };
 
