@@ -1,0 +1,1486 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Track Health",
+    "description": "This is an API Rest maked in NodeJs...",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "Description": "API of development"
+    }
+  ],
+  "paths": {
+    "/allergies": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Search all alergies registers on table allergies.",
+        "summary": "Search all allergies",
+        "tags": ["Allergy"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultFields"
+                },
+                "example": [
+                  {
+                    "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                    "name": "Alergia A Batata"
+                  },
+                  {
+                    "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                    "name": "Alergia A Melancia"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          }
+        }
+      }
+    },
+    "/user/allergies": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Search all alergies registers by the user.",
+        "summary": "Search all user allergies",
+        "tags": ["Allergy"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AllergyResponse"
+                  }
+                },
+                "example": [
+                  {
+                    "id": "9efc9b1c-33d1-4d16-8fa0-2b9f34dda55a",
+                    "description": "Descrição feliz",
+                    "allergy": {
+                      "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                      "name": "Alergia A Batata"
+                    }
+                  },
+                  {
+                    "id": "944c9b1c-33d1-4d16-8fa0-2b9f34dda55a",
+                    "description": "Descrição bolada",
+                    "allergy": {
+                      "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                      "name": "Alergia A Melancia"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          }
+        }
+      }
+    },
+    "/user/allergy": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Allergy"],
+        "summary": "Create a user allergy",
+        "description": "Add a new allergy to user or create a new allergy. The fileds 'id' is optional when you want to create a new allergy. The field description is optional in any cases.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AllergyCreate"
+              },
+              "examples": {
+                "existing allergy ": {
+                  "value": {
+                    "id": "45499c65-28db-49fb-8be5-357e1780f6b5",
+                    "name": "Camarão",
+                    "description": "Alergia a camarão detalhada, caso necessário."
+                  }
+                },
+                "new allergy": {
+                  "value": {
+                    "name": "Camarão",
+                    "description": "Alergia a camarão detalhada, caso necessário."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/AllergyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Allergy already exists."
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          }
+        }
+      }
+    },
+    "/user/allergy/{id}": {
+      "patch": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Update a user allergy description by id sended to route params.",
+        "summary": "Update a allergy description.",
+        "tags": ["Allergy"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User allergy id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "proprierties": {
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "description": "A nice description here."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/AllergyResponse"
+                },
+                "example": {
+                  "id": "9efc9b1c-33d1-4d16-8fa0-2b9f34dda55a",
+                  "description": "Descrição alterada",
+                  "allergy": {
+                    "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                    "name": "Alergia A Amendoin"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Allergy Not Found": {
+                    "value": {
+                      "message": "Allergy Not Found"
+                    }
+                  },
+                  "Invalid Type": {
+                    "value": {
+                      "message": "Type decription must be string."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Delete a user allergy by id sended to route params.",
+        "summary": "Delete a user allergy.",
+        "tags": ["Allergy"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User allergy id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "success"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Allergy Not Found"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/medications": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Search all medications registers on table medications.",
+        "summary": "Search all medications",
+        "tags": ["Medication"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultFields"
+                },
+                "example": [
+                  {
+                    "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                    "name": "Vicodin"
+                  },
+                  {
+                    "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                    "name": "Amoxilina"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          }
+        }
+      }
+    },
+    "/user/medications": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Search all medications registers by the user.",
+        "summary": "Search all user medications",
+        "tags": ["Medication"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserMedicationResponse"
+                  }
+                },
+                "example": [
+                  {
+                    "id": "9efc9b1c-33d1-4d16-8fa0-2b9f34dda55a",
+                    "description": "75mg todos os dias.",
+                    "allergy": {
+                      "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                      "name": "Puran T4"
+                    }
+                  },
+                  {
+                    "id": "944c9b1c-33d1-4d16-8fa0-2b9f34dda55a",
+                    "description": "Diariamente.",
+                    "allergy": {
+                      "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                      "name": "Rivotril"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          }
+        }
+      }
+    },
+    "/user/medication": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Medication"],
+        "summary": "Create a user medication",
+        "description": "Add a new medication to user or create a new medication. The fileds 'id' is optional when you want to create a new medication. The field description is optional in any cases.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserMedicationCreate"
+              },
+              "examples": {
+                "existing medication ": {
+                  "value": {
+                    "id": "45499c65-28db-49fb-8be5-357e1780f6b5",
+                    "name": "Rivotril",
+                    "description": "3x ao dia, por 5 anos."
+                  }
+                },
+                "new medication": {
+                  "value": {
+                    "name": "Puran T4",
+                    "description": "75mg todos os dias para tireoide."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/UserMedicationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Medication already exists."
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          }
+        }
+      }
+    },
+    "/user/medication/{id}": {
+      "patch": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Update a user medication description by id sended to route params.",
+        "summary": "Update a medication description.",
+        "tags": ["Medication"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User medication id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "proprierties": {
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "description": "A nice description here."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/UserMedicationResponse"
+                },
+                "example": {
+                  "id": "9efc9b1c-33d1-4d16-8fa0-2b9f34dda55a",
+                  "description": "200mg",
+                  "allergy": {
+                    "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                    "name": "Eparina"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Allergy Not Found": {
+                    "value": {
+                      "message": "Medication Not Found"
+                    }
+                  },
+                  "Invalid Type": {
+                    "value": {
+                      "message": "Type decription must be string."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Delete a user medication by id sended to route params.",
+        "summary": "Delete a user medication.",
+        "tags": ["Medication"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User medication id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "success"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Medication Not Found"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/anamnesis": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Search user anamnesis",
+        "summary": "Search user anamnesis",
+        "tags": ["Anamnesis"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnamnesisResponse"
+                },
+                "example": {
+                  "id": "132daf90-1a8e-46eb-918c-33fecbd88e94",
+                  "diseases": true,
+                  "allergy": true,
+                  "continuousMedication": true,
+                  "surgery": false,
+                  "alcoholic": true,
+                  "drugUser": false,
+                  "smoker": true,
+                  "physicalActivity": false,
+                  "diabetes": false,
+                  "hipertension": true
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Anamnesis"],
+        "summary": "Create a user anamnesis",
+        "description": "Create a new anamnesis to user.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnamnesisCreate"
+              },
+              "example": {
+                "diseases": true,
+                "allergy": true,
+                "continuousMedication": true,
+                "surgery": false,
+                "alcoholic": true,
+                "drugUser": false,
+                "smoker": true,
+                "physicalActivity": false,
+                "diabetes": false,
+                "hipertension": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/AnamnesisResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "User already have a anamnesis."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          }
+        }
+      },
+      "patch": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Anamnesis"],
+        "summary": "Update user anamnesis.",
+        "description": "Update anamnesis.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnamnesisUpdate"
+              },
+              "example": {
+                "diseases": true,
+                "allergy": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/AnamnesisResponse"
+                },
+                "example": {
+                  "id": "cbb12d51-1f2f-4a73-971f-453361ab1073",
+                  "diseases": true,
+                  "allergy": true,
+                  "continuousMedication": true,
+                  "surgery": false,
+                  "alcoholic": true,
+                  "drugUser": false,
+                  "smoker": true,
+                  "physicalActivity": false,
+                  "diabetes": false,
+                  "hipertension": true
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Delete user anamnesis",
+        "summary": "Delete user anamnesis",
+        "tags": ["Anamnesis"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "success"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          }
+        }
+      }
+    },
+    "/disease": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Search all diseases registers on table diseases.",
+        "summary": "Search all diseases",
+        "tags": ["Disease"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultFields"
+                },
+                "example": [
+                  {
+                    "id": "e33d2b57-8572-4d1a-9481-e22f6c411305",
+                    "name": "Diarréia"
+                  },
+                  {
+                    "id": "1134a210-6f67-4707-b527-e22c19d43f32",
+                    "name": "Diabetes"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          }
+        }
+      },
+      "post:": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Create a new disease.",
+        "summary": "Create a new disease",
+        "tags": ["Disease"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DiseaseCreate"
+              },
+              "example": {
+                "name": "Diarréia"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/DiseaseResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Disease already exists."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          }
+        }
+      }
+    },
+    "/disease/{id}": {
+      "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Delete a disease by id sended by route params.",
+        "summary": "Delete a disease",
+        "tags": ["Disease"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Disease id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Disease deleted."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Disease Not Found"
+                }
+              }
+            },
+            "401": {
+              "description": "Missing authorization headers"
+            }
+          }
+        }
+      }
+    },
+    "/user/disease": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Search all diseases registers by the user.",
+        "summary": "Search all user diseases",
+        "tags": ["Disease"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDiseaseResponse"
+                  }
+                },
+                "example": [
+                  {
+                    "id": "b4b1de8e-8b17-4d16-9cb5-efbfac85b8f0",
+                    "description": "Doença crônica",
+                    "medication": "insulina",
+                    "disease": {
+                      "id": "d14f7b92-9e72-4ee8-964d-d17c7713fbfd",
+                      "name": "Diabetes"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Disease"],
+        "summary": "Create a user disease",
+        "description": "Add a new disease to user. If the disease don't exist create a new one and add to user. You only need to give the name of the disease, description and medication are optional.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDiseaseCreate"
+              },
+              "examples": {
+                "Disease": {
+                  "value": {
+                    "description": "Doença crônica",
+                    "medication": "insulina",
+                    "disease": "Diabetes"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/UserDiseasePostResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Disease already exists."
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          }
+        }
+      }
+    },
+    "/user/disease/{id}": {
+      "patch": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Update a user disease description and/or medication by id sended to route params.",
+        "summary": "Update a disease description/medication.",
+        "tags": ["Disease"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User disease id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "proprierties": {
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "description": "A nice description here."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/UserDiseaseUpdateResponse"
+                },
+                "example": {
+                  "message": "Gastrite updated",
+                  "disease": [
+                    {
+                      "id": "e55b7663-df71-4e3e-ba33-82ad4a5f908b",
+                      "description": "A nice description here.",
+                      "medication": "Remedy",
+                      "disease": {
+                        "id": "3117c9b2-a5c8-4df8-b02b-66117838f2a9",
+                        "name": "Gastrite"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Invalid Type": {
+                    "value": {
+                      "message": "Type decription must be string."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Delete a user disease by id sended to route params.",
+        "summary": "Delete a user disease.",
+        "tags": ["Disease"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User disease id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Disease deleted"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Disease Not Found"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "AllergyCreate": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "AllergyResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "allergy": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "DefaultFields": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "UserMedicationCreate": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "UserMedicationResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "medication": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "AnamnesisResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "diseases": {
+            "type": "boolean"
+          },
+          "continuousMedication": {
+            "type": "boolean"
+          },
+          "surgery": {
+            "type": "boolean"
+          },
+          "alcoholic": {
+            "type": "boolean"
+          },
+          "drugUser": {
+            "type": "boolean"
+          },
+          "smoker": {
+            "type": "boolean"
+          },
+          "physicalActivity": {
+            "type": "boolean"
+          },
+          "diabetes": {
+            "type": "boolean"
+          },
+          "hipertension": {
+            "type": "boolean"
+          }
+        }
+      },
+      "AnamnesisCreate": {
+        "type": "object",
+        "required": [
+          "diseases",
+          "continuousMedication",
+          "surgery",
+          "alcoholic",
+          "drugUser",
+          "smoker",
+          "physicalActivity",
+          "diabetes",
+          "hipertension"
+        ],
+        "properties": {
+          "diseases": {
+            "type": "boolean"
+          },
+          "continuousMedication": {
+            "type": "boolean"
+          },
+          "surgery": {
+            "type": "boolean"
+          },
+          "alcoholic": {
+            "type": "boolean"
+          },
+          "drugUser": {
+            "type": "boolean"
+          },
+          "smoker": {
+            "type": "boolean"
+          },
+          "physicalActivity": {
+            "type": "boolean"
+          },
+          "diabetes": {
+            "type": "boolean"
+          },
+          "hipertension": {
+            "type": "boolean"
+          }
+        }
+      },
+      "AnamnesisUpdate": {
+        "type": "object",
+        "properties": {
+          "diseases": {
+            "type": "boolean"
+          },
+          "continuousMedication": {
+            "type": "boolean"
+          },
+          "surgery": {
+            "type": "boolean"
+          },
+          "alcoholic": {
+            "type": "boolean"
+          },
+          "drugUser": {
+            "type": "boolean"
+          },
+          "smoker": {
+            "type": "boolean"
+          },
+          "physicalActivity": {
+            "type": "boolean"
+          },
+          "diabetes": {
+            "type": "boolean"
+          },
+          "hipertension": {
+            "type": "boolean"
+          }
+        }
+      },
+      "DiseaseCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "DiseaseResponse": {
+        "type": "object",
+        "properties": {
+          "disease": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "UserDiseaseResponse": {
+        "type": "array",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "medication": {
+            "type": "string"
+          },
+          "disease": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "UserDiseaseCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "required": true
+          },
+          "description": {
+            "type": "string"
+          },
+          "medication": {
+            "type": "string"
+          }
+        }
+      },
+      "UserDiseasePostResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "medication": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "UserDiseaseUpdateResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "disease": {
+            "type": "array",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "medication": {
+                "type": "string"
+              },
+              "disease": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
