@@ -24,7 +24,6 @@ interface IVaccineDTO {
 interface IVaccineRepo {
   createVaccine: (vaccine: IVaccineDTO) => Promise<UserVaccine>;
   findVaccines: () => Promise<UserVaccine[]>;
-  // findOne: (name: string) => Promise<IVaccineInterfaces | undefined>;
   findUserVaccine: (id: string) => Promise<UserVaccine[]>;
   findUserVaccineById: (id: string, userId: string) => Promise<UserVaccine>;
   updateUserVaccine: (

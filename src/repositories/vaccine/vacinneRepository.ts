@@ -13,7 +13,6 @@ class VaccineRepository implements IVaccineRepo {
   createVaccine = async (vaccine: IVaccineDTO): Promise<UserVaccine> =>
     this.ormRepository.save(vaccine);
   findVaccines = () => this.ormRepository.find();
-  // findOne = (name: string) => this.ormRepository.find(name);
   findUserVaccine = async (id: string) =>
     this.ormRepository.find({
       where: { user: { id } },

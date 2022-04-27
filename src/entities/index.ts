@@ -7,6 +7,8 @@ import { UserDiseases } from "./disease/UserDisease";
 import { Doctors } from "./doctor/Doctor";
 import { Medications } from "./medication/Medication";
 import { UserMedications } from "./medication/UserMedication";
+import { Surgery } from "./surgery/Surgery";
+import { UserSurgery } from "./surgery/UserSurgery";
 import { Anamnesis } from "./user/Anamnesis";
 import { ProfileImage } from "./user/ProfileImage";
 import { User } from "./user/User";
@@ -28,4 +30,6 @@ export {
   Medications,
   Allergies,
   Anamnesis,
+  Surgery,
+  UserSurgery,
 };

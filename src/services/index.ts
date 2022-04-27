@@ -22,6 +22,10 @@ import { getMedicationsService } from "./medication/getMedicationServices";
 import { createProfileImageService } from "./profileImage/createProfileImageService";
 import { deleteProfileImageService } from "./profileImage/deleteProfileImageService";
 import { getProfileImageService } from "./profileImage/getProfileImageService";
+import { createSurgeryService } from "./surgery/createUserSurgeryService";
+import { deleteUserSurgeryService } from "./surgery/deleteUserSurgeryService";
+import { getUserSurgeryServices } from "./surgery/getUserSurgeryServices";
+import { updateUserSurgeryService } from "./surgery/updateUserSurgeryService";
 import createDiseaseServices from "./user_disease/createDiseaseService";
 import deleteUserDiseaseService from "./user_disease/deleteUserDiseaseService";
 import getUserDiseaseService from "./user_disease/getUserDiseaseService";
@@ -84,4 +88,8 @@ export {
   deleteProfileImageService,
   updateUserVaccineService,
   deleteUserVaccineService,
+  createSurgeryService,
+  deleteUserSurgeryService,
+  getUserSurgeryServices,
+  updateUserSurgeryService,
 };
