@@ -12,6 +12,7 @@ import { profileImageRoute } from "./profileImage/profileImageRoute";
 import { userRoute } from "./user/userRoute";
 import { userAllergyRoute } from "./userallergy/userAllergyRoutes";
 import { userMedicationRoute } from "./userMedication/userMedicationRoutes";
+import { vaccineRoute } from "./vaccine/vaccineRoute";
 
 const routes = (app: Express) => {
   addressRoute(app);
@@ -24,6 +25,7 @@ const routes = (app: Express) => {
   userAllergyRoute(app);
   userMedicationRoute(app);
   medicationsRoute(app);
+  vaccineRoute(app);
   anamnesisRoute(app);
   profileImageRoute(app);
 };

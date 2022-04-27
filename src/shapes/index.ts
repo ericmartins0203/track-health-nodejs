@@ -12,8 +12,10 @@ import { loginUserShape } from "./login/loginShape";
 import { createUserMedicationShape } from "./medication/createUserMedicationShape";
 import { createUserShape } from "./user/CreateUserShape";
 import { updateUserShape } from "./user/UpdateUserShape";
+import { createVaccineShape } from "./vaccine/createVaccineShape";
 
 export {
+  createVaccineShape,
   addressShape,
   appointmentShape,
   updateAppointmentShape,

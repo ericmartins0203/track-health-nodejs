@@ -37,8 +37,12 @@ import { createUserMedicationService } from "./userMedicaiton/createUserMedicati
 import { deleteUserMedicationService } from "./userMedicaiton/deleteUserMedicationService";
 import { getUserMedicationsService } from "./userMedicaiton/getUserMedicationsService";
 import { updateUserMedicationService } from "./userMedicaiton/updateMedicationService";
+import { createVaccineService } from "./vaccine/CreateVaccineService";
+import { deleteUserVaccineService } from "./vaccine/deleteUserVaccineService";
+import { updateUserVaccineService } from "./vaccine/updateUserVaccineService";
 
 export {
+  createVaccineService,
   allDoctorService,
   updateDoctorService,
   deleteDoctorService,
@@ -78,4 +82,6 @@ export {
   createProfileImageService,
   getProfileImageService,
   deleteProfileImageService,
+  updateUserVaccineService,
+  deleteUserVaccineService,
 };

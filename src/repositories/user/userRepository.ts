@@ -1,4 +1,3 @@
-/* eslint-disable no-return-await */
 import { getRepository, Repository } from "typeorm";
 
 import { User } from "../../entities/user/User";
@@ -21,6 +20,8 @@ class UserRepository implements IUserRepo {
       .leftJoinAndSelect("userAllergies.allergy", "allergy")
       .leftJoinAndSelect("user.userDiseases", "userDiseases")
       .leftJoinAndSelect("userDiseases.disease", "diseases")
+      .leftJoinAndSelect("user.userVaccines", "userVaccines")
+      .leftJoinAndSelect("userVaccines.vaccine", "vaccine")
       .leftJoinAndSelect("user.appointment", "appointment")
       .leftJoinAndSelect("appointment.doctor", "doctor")
       .leftJoinAndSelect("doctor.address", "address")
@@ -33,6 +34,7 @@ class UserRepository implements IUserRepo {
         "diseases.name",
         "userAllergies",
         "allergy.name",
+        "userVaccines",
         "appointment",
         "doctor",
         "address",
@@ -41,12 +43,14 @@ class UserRepository implements IUserRepo {
         "anamnesis",
       ])
       .getOne();
+
   findById = async (id: string): Promise<IUserInterface | undefined> =>
     this.ormRepository
       .createQueryBuilder("user")
-      .addSelect("user.password")
       .where("user.id = :id", { id })
+
       .getOne();
+
   updateUser = async (
     user: IUserInterface
   ): Promise<IUserInterface | undefined> => this.ormRepository.save(user);

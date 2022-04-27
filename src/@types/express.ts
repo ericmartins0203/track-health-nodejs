@@ -13,6 +13,7 @@ import { IDiseaseInterface } from "../repositories/disease/InterfaceDiseaseRepos
 import { IDoctorInterface } from "../repositories/doctor/interfaceDoctorRepository";
 import { IUserInterface } from "../repositories/user/InterfaceUserRepository";
 import { IUserAllergies } from "../repositories/userAllergies/userAllergiesInterface";
+import { IVaccineInterfaces } from "../repositories/vaccine/IVaccineInterfaces";
 
 declare global {
   namespace Express {
@@ -20,6 +21,7 @@ declare global {
       validate:
         | IUserInterface
         | IDiseaseInterface
+        | IVaccineInterfaces
         | IUserAllergies
         | IDoctorInterface
         | IAddressInterface
