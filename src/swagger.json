@@ -1158,6 +1158,829 @@
           }
         }
       }
+    },
+    "/address": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Search all address registers on table address.",
+        "summary": "Search all address",
+        "tags": ["Address"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddressResponse"
+                },
+                "example": {
+                  "message": "Successfully retrieved all addresses",
+                  "data": [
+                    {
+                      "id": "bbdb3b46-4f67-4494-8d1b-08c9bfb88a50",
+                      "street": "rua blah",
+                      "number": 25,
+                      "district": "Agua das vertentes",
+                      "city": "Capitólio",
+                      "complement": "do lado do posto de gasolina"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Address"],
+        "summary": "Create a new address",
+        "description": "Create a new address.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAddress"
+              },
+              "example": {
+                "street": "rua da luz",
+                "number": 25,
+                "district": "Agua das vertentes",
+                "city": "Capitólio",
+                "complement": "do lado do posto de gasolina"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/AddressResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": [
+                    "street must be a `string` type, but the final value was: `5`."
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          }
+        }
+      }
+    },
+    "/address/{id}": {
+      "patch": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Update a address by id sended by route params.",
+        "summary": "Update a address",
+        "tags": ["Address"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Address id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAddress"
+              },
+              "example": {
+                "street": "rua da luz",
+                "number": 50,
+                "district": "agua das vertentes",
+                "city": "rio de janeiro",
+                "complement": "De frente pra praia"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddressResponse"
+                },
+                "example": {
+                  "message": "Successfully updated address",
+                  "data": {
+                    "street": "rua da luz",
+                    "number": 50,
+                    "district": "agua das vertentes",
+                    "city": "rio de janeiro",
+                    "complement": "De frente pra praia",
+                    "id": "90cf9704-92c8-461a-95a8-a3d65f9d6aa5"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Address Not Found"
+                }
+              }
+            },
+            "401": {
+              "description": "Missing authorization headers"
+            }
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Delete a address by id sended by route params.",
+        "summary": "Delete a address",
+        "tags": ["Address"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Address id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddressResponse"
+                },
+                "example": {
+                  "message": "Successfully deleted address",
+                  "data": {
+                    "id": "90cf9704-92c8-461a-95a8-a3d65f9d6aa5",
+                    "street": "rua da luz",
+                    "number": 50,
+                    "district": "agua das vertentes",
+                    "city": "rio de janeiro",
+                    "complement": "De frente pra praia"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Address Not Found"
+                }
+              }
+            },
+            "401": {
+              "description": "Missing authorization headers"
+            }
+          }
+        }
+      }
+    },
+    "/doctor": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Search all doctors registers on table doctors.",
+        "summary": "Search all doctors",
+        "tags": ["Doctors"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DoctorResponse"
+                },
+                "example": {
+                  "message": "Successfully retrieved all doctors",
+                  "data": [
+                    {
+                      "id": "2f26dea2-4c84-48a1-97f2-4d76d0c8f75d",
+                      "name": "glodoaldo",
+                      "type": "cardiologista",
+                      "email": "glodoaldo@email.com",
+                      "phone": "(21)12345-6789",
+                      "sex": "masculino",
+                      "address": {
+                        "id": "bbdb3b46-4f67-4494-8d1b-08c9bfb88a50",
+                        "street": "rua blah",
+                        "number": 25,
+                        "district": "Agua das vertentes",
+                        "city": "Capitólio",
+                        "complement": "do lado do posto de gasolina"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "message": "Address not found"
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Create a new doctor.",
+        "summary": "Create a new doctor",
+        "tags": ["Doctors"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDoctor"
+              },
+              "example": {
+                "name": "Gustavi",
+                "type": "Cardiologista",
+                "email": "gustavo@email.com",
+                "phone": "(21)12345-6789",
+                "sex": "masculino",
+                "addressId": "3e217e29-963e-4e30-8b5d-9cf60a884b69"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/AddressResponse"
+                },
+                "example": {
+                  "message": "Doctor created successfully",
+                  "doctor": {
+                    "name": "Gustavi",
+                    "type": "Cardiologista",
+                    "email": "gustavo@email.com",
+                    "phone": "(21)12345-6789",
+                    "sex": "masculino",
+                    "address": {
+                      "id": "3e217e29-963e-4e30-8b5d-9cf60a884b69",
+                      "street": "rua da luz",
+                      "number": 25,
+                      "district": "Agua das vertentes",
+                      "city": "Capitólio",
+                      "complement": "do lado do posto de gasolina"
+                    },
+                    "id": "1cb26b26-7ad7-40cc-ae5e-8a9d415f82b8"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": [
+                    "name must be a `string` type, but the final value was: `5`."
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          }
+        }
+      }
+    },
+    "/doctor/{id}": {
+      "patch": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Update a doctor by id sended by route params.",
+        "summary": "Update a doctor",
+        "tags": ["Doctors"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Doctor id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDoctor"
+              },
+              "example": {
+                "name": "Gustavo",
+                "type": "endocrino",
+                "email": "gustavo@email.com",
+                "phone": "(19)12345-6789",
+                "sex": "feminino"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DoctorResponse"
+                },
+                "example": {
+                  "message": "Successfully updated doctor",
+                  "data": {
+                    "name": "Gustavo",
+                    "type": "endocrino",
+                    "email": "gustavo@email.com",
+                    "phone": "(19)12345-6789",
+                    "sex": "feminino",
+                    "id": "1cb26b26-7ad7-40cc-ae5e-8a9d415f82b8"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Doctor Not Found"
+                }
+              }
+            },
+            "401": {
+              "description": "Missing authorization headers"
+            }
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Delete a doctor by id sended by route params.",
+        "summary": "Delete a doctor",
+        "tags": ["Doctors"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Doctor id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DoctorResponse"
+                },
+                "example": {
+                  "message": "Successfully deleted doctor",
+                  "doctor": {
+                    "id": "1cb26b26-7ad7-40cc-ae5e-8a9d415f82b8",
+                    "name": "Gustavo",
+                    "type": "endocrino",
+                    "email": "gustavo@email.com",
+                    "phone": "(19)12345-6789",
+                    "sex": "feminino",
+                    "address": {
+                      "id": "3e217e29-963e-4e30-8b5d-9cf60a884b69",
+                      "street": "rua da luz",
+                      "number": 25,
+                      "district": "Agua das vertentes",
+                      "city": "Capitólio",
+                      "complement": "do lado do posto de gasolina"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Doctor Not Found"
+                }
+              }
+            },
+            "401": {
+              "description": "Missing authorization headers"
+            }
+          }
+        }
+      }
+    },
+    "/appointment": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Search all appointments registers on table appointments.",
+        "summary": "Search all appointments",
+        "tags": ["Appointments"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppointmentResponse"
+                },
+                "example": {
+                  "message": "All appointments",
+                  "appointments": [
+                    {
+                      "id": "e991b2fb-2ffb-4ebf-8866-bae716d38b7d",
+                      "date": "2021-01-01T00:00:00.000Z",
+                      "description": "dor da região atras do rosto",
+                      "doctor": {
+                        "id": "2f26dea2-4c84-48a1-97f2-4d76d0c8f75d",
+                        "name": "glodoaldo",
+                        "type": "cardiologista",
+                        "email": "glodoaldo@email.com",
+                        "phone": "(21)12345-6789",
+                        "sex": "masculino",
+                        "address": {
+                          "id": "bbdb3b46-4f67-4494-8d1b-08c9bfb88a50",
+                          "street": "rua blah",
+                          "number": 25,
+                          "district": "Agua das vertentes",
+                          "city": "Capitólio",
+                          "complement": "do lado do posto de gasolina"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Create a new appointment.",
+        "summary": "Create a new appointment",
+        "tags": ["Appointments"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAppointment"
+              },
+              "example": {
+                "date": "01/05/2022",
+                "description": "Arritmia",
+                "doctorId": "2f26dea2-4c84-48a1-97f2-4d76d0c8f75d"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/AppointmentResponse"
+                },
+                "example": {
+                  "message": "Appointment created successfully",
+                  "appointment": {
+                    "date": "2022-01-05T00:00:00.000Z",
+                    "description": "Arritmia",
+                    "doctor": {
+                      "id": "fb45d905-03e8-4392-a40a-ce9cd350a2f8",
+                      "name": "Gustavo",
+                      "type": "Cardiologista",
+                      "email": "gustavo@email.com",
+                      "phone": "(19)12345-6789",
+                      "sex": "masculino",
+                      "address": {
+                        "id": "3e217e29-963e-4e30-8b5d-9cf60a884b69",
+                        "street": "rua da luz",
+                        "number": 25,
+                        "district": "Agua das vertentes",
+                        "city": "Capitólio",
+                        "complement": "do lado do posto de gasolina"
+                      }
+                    },
+                    "id": "2857c5d6-1630-49a5-842d-d1e5cdcbabf3"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": [
+                    "name must be a `string` type, but the final value was: `5`."
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing authorization headers"
+          }
+        }
+      }
+    },
+    "/appointment/{id}": {
+      "patch": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Update a appointment by id sended by route params.",
+        "summary": "Update a appointment",
+        "tags": ["Appointments"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Appointment id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAppointment"
+              },
+              "example": {
+                "description": "dor na parte de tras da cabeça",
+                "date": "11/05/2022"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DoctorResponse"
+                },
+                "example": {
+                  "message": "Appointment updated successfully",
+                  "appointment": {
+                    "id": "2857c5d6-1630-49a5-842d-d1e5cdcbabf3",
+                    "date": "2022-11-05T00:00:00.000Z",
+                    "description": "dor na parte de tras da cabeça",
+                    "doctor": {
+                      "id": "fb45d905-03e8-4392-a40a-ce9cd350a2f8",
+                      "name": "Gustavo",
+                      "type": "Cardiologista",
+                      "email": "gustavo@email.com",
+                      "phone": "(19)12345-6789",
+                      "sex": "masculino",
+                      "address": {
+                        "id": "3e217e29-963e-4e30-8b5d-9cf60a884b69",
+                        "street": "rua da luz",
+                        "number": 25,
+                        "district": "Agua das vertentes",
+                        "city": "Capitólio",
+                        "complement": "do lado do posto de gasolina"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Appointment Not Found"
+                }
+              }
+            },
+            "401": {
+              "description": "Missing authorization headers"
+            }
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Delete a appointment by id sended by route params.",
+        "summary": "Delete a appointment",
+        "tags": ["Appointments"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Appointment id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppointmentResponse"
+                },
+                "example": {
+                  "message": "Appointment deleted successfully",
+                  "appointment": {
+                    "id": "2857c5d6-1630-49a5-842d-d1e5cdcbabf3",
+                    "date": "2022-11-05T00:00:00.000Z",
+                    "description": "dor na parte de tras da cabeça",
+                    "doctor": {
+                      "id": "fb45d905-03e8-4392-a40a-ce9cd350a2f8",
+                      "name": "Gustavo",
+                      "type": "Cardiologista",
+                      "email": "gustavo@email.com",
+                      "phone": "(19)12345-6789",
+                      "sex": "masculino",
+                      "address": {
+                        "id": "3e217e29-963e-4e30-8b5d-9cf60a884b69",
+                        "street": "rua da luz",
+                        "number": 25,
+                        "district": "Agua das vertentes",
+                        "city": "Capitólio",
+                        "complement": "do lado do posto de gasolina"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "proprierties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Appointment Not Found"
+                }
+              }
+            },
+            "401": {
+              "description": "Missing authorization headers"
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1478,6 +2301,274 @@
                 }
               }
             }
+          }
+        }
+      },
+      "AddressResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "data": [
+            {
+              "id": {
+                "type": "string"
+              },
+              "street": {
+                "type": "string"
+              },
+              "number": {
+                "type": "number"
+              },
+              "district": {
+                "type": "string"
+              },
+              "city": {
+                "type": "string"
+              },
+              "complement": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "CreateAddress": {
+        "type": "object",
+        "properties": {
+          "street": {
+            "type": "string",
+            "required": true
+          },
+          "number": {
+            "type": "number",
+            "required": true
+          },
+          "district": {
+            "type": "string",
+            "required": true
+          },
+          "city": {
+            "type": "string",
+            "required": true
+          },
+          "complement": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateAddress": {
+        "type": "object",
+        "properties": {
+          "street": {
+            "type": "string"
+          },
+          "number": {
+            "type": "number"
+          },
+          "district": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "complement": {
+            "type": "string"
+          }
+        }
+      },
+      "DoctorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "data": [
+            {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "type": {
+                "type": "number"
+              },
+              "email": {
+                "type": "string"
+              },
+              "phone": {
+                "type": "string"
+              },
+              "sex": {
+                "type": "string"
+              },
+              "address": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "street": {
+                    "type": "string"
+                  },
+                  "number": {
+                    "type": "number"
+                  },
+                  "district": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "complement": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "CreateDoctor": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "required": true
+          },
+          "type": {
+            "type": "number",
+            "required": true
+          },
+          "email": {
+            "type": "string",
+            "required": true
+          },
+          "phone": {
+            "type": "string"
+          },
+          "sex": {
+            "type": "string"
+          },
+          "addresId": {
+            "type": "string",
+            "required": true
+          }
+        }
+      },
+      "UpdateDoctor": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "number"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "sex": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateAppointment": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "description": {
+            "type": "number"
+          }
+        }
+      },
+      "AppointmentResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "data": [
+            {
+              "id": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "doctor": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "number"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "sex": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "street": {
+                        "type": "string"
+                      },
+                      "number": {
+                        "type": "number"
+                      },
+                      "district": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "complement": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "CreateAppointment": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "required": true
+          },
+          "description": {
+            "type": "number"
+          },
+          "doctorId": {
+            "type": "string",
+            "required": true
           }
         }
       }
