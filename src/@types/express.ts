@@ -28,7 +28,8 @@ declare global {
         | IAppointmentInterface
         | IUserTablesShape
         | IAnamnesisShape
-        | IAnamnesisShapeUpdate;
+        | IAnamnesisShapeUpdate
+        | IUserTablesShape;
       decoded: IDecoded;
     }
 

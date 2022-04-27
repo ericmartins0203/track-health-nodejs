@@ -9,12 +9,14 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "jest": "^27.0.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.2",
     "multer": "^1.4.4",
     "multer-s3": "^2.10.0",
     "pg": "^8.4.0",
     "reflect-metadata": "^0.1.13",
+    "supertest": "^6.2.3",
     "swagger-ui-express": "^4.3.0",
     "ts-node": "^10.7.0",
     "typeorm": "0.2.45",
@@ -26,11 +28,13 @@
     "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
+    "@types/jest": "^27.4.1",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/moment": "^2.13.0",
     "@types/multer": "^1.4.7",
     "@types/multer-s3": "^2.7.12",
     "@types/node": "^16.11.10",
+    "@types/supertest": "^2.0.12",
     "@types/swagger-ui-express": "^4.1.3",
     "@types/uuid": "^8.3.4",
     "@types/yup": "^0.29.13",
@@ -44,6 +48,7 @@
     "eslint-plugin-import-helpers": "^1.2.1",
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.6.2",
+    "ts-jest": "^27.1.4",
     "ts-node-dev": "^1.1.8",
     "typescript": "4.5.2"
   },
@@ -51,6 +56,7 @@
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "start": "ts-node src/server.ts",
     "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js -f ./src/database/ormconfig.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "test": "jest --passWithNoTests --detectOpenHandles"
   }
 }
