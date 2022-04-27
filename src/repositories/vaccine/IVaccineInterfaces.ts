@@ -1,3 +1,5 @@
+import { DeleteResult, UpdateResult } from "typeorm";
+
 import { UserVaccine, Vaccine } from "../../entities";
 
 interface IVaccineInterfaces {
@@ -24,6 +26,12 @@ interface IVaccineRepo {
   findVaccines: () => Promise<UserVaccine[]>;
   // findOne: (name: string) => Promise<IVaccineInterfaces | undefined>;
   findUserVaccine: (id: string) => Promise<UserVaccine[]>;
+  findUserVaccineById: (id: string, userId: string) => Promise<UserVaccine>;
+  updateUserVaccine: (
+    id: string,
+    userData: Partial<Vaccine>
+  ) => Promise<UpdateResult>;
+  deleteUserVaccine: (id: string) => Promise<DeleteResult>;
 }
 
 export { IVaccineInterfaces, IVaccineRepo, IVaccineDTO };

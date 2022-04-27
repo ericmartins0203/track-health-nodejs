@@ -22,7 +22,7 @@ export class UserMedications {
   @JoinColumn()
   user: User;
 
-  @ManyToOne(() => Medications, (medications) => medications, {
+  @ManyToOne(() => Medications, (medications) => medications.name, {
     eager: true,
     cascade: ["insert"],
     nullable: false,

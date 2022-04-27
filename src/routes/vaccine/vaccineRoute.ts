@@ -1,6 +1,9 @@
 import { Express, Router } from "express";
 
-import { createVaccineController } from "../../controllers";
+import {
+  createVaccineController,
+  updateVaccineController,
+} from "../../controllers";
 import { getUserVaccineController } from "../../controllers/vaccine/getUserVaccineController";
 import { validateAuthToken, validateShape } from "../../middlewares";
 import { createVaccineShape } from "../../shapes";
@@ -16,6 +19,12 @@ const vaccineRoute = (app: Express) => {
   );
 
   vaccineRoute.get("/vaccine", validateAuthToken, getUserVaccineController);
+
+  vaccineRoute.patch(
+    "/vaccine/:vaccineId",
+    validateAuthToken,
+    updateVaccineController
+  );
 
   app.use("/user", vaccineRoute);
 };

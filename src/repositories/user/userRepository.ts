@@ -1,4 +1,3 @@
-/* eslint-disable no-return-await */
 import { getRepository, Repository } from "typeorm";
 
 import { User } from "../../entities/user/User";
@@ -23,6 +22,9 @@ class UserRepository implements IUserRepo {
       .leftJoinAndSelect("userDiseases.disease", "diseases")
       .leftJoinAndSelect("user.userVaccines", "userVaccines")
       .leftJoinAndSelect("userVaccines.vaccine", "vaccine")
+      .leftJoinAndSelect("user.userMedications", "userMedications")
+      .leftJoinAndSelect("userMedications.medication", "medication")
+      .leftJoinAndSelect("user.anamnesis", "anamnesis")
       .select([
         "user",
         "userDiseases",
@@ -30,6 +32,9 @@ class UserRepository implements IUserRepo {
         "userAllergies",
         "allergy.name",
         "userVaccines",
+        "userMedications",
+        "medication.name",
+        "anamnesis",
       ])
       .getOne();
 
