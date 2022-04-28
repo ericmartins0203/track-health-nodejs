@@ -11,7 +11,7 @@ const createSurgeryController = async (
     const { userId } = request.decoded;
     const surgeryData = request.validate as ISurgeryInterfaces;
     const surgery = await createSurgeryService(surgeryData, userId);
-    return response.json(surgery);
+    return response.status(201).json(surgery);
   } catch (error: unknown) {
     if (error instanceof Error) {
       return response.status(400).json({
