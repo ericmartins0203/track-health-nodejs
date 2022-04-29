@@ -10,7 +10,7 @@ const createUserController = async (
   try {
     const userData = request.validate as IUserInterface;
     const user = await CreateUserService(userData);
-    return response.json(user);
+    return response.status(201).json(user);
   } catch (error: unknown) {
     if (error instanceof Error) {
       return response.status(400).json({
