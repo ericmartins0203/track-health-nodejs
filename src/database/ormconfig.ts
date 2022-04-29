@@ -32,8 +32,8 @@ const prodConfig = {
 const testEnv = {
   type: "sqlite",
   database: "./dbTest.sqlite",
-  synchronize: true,
+  synchronize: false,
   entities: ["src/entities/**/*.*"],
 } as ConnectionOptions;
 
-export default process.env.NODE_ENV === "test" ? testEnv : devConfig;
+export default process.env.NODE_ENV === "production" ? prodConfig : devConfig;
