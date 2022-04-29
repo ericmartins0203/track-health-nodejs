@@ -1,5 +1,4 @@
 import faker from "@faker-js/faker";
-import { hashSync } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import supertest from "supertest";
 
@@ -7,9 +6,9 @@ import { ConnectionTestJest, generateUser } from "..";
 
 import app from "../../app";
 import config from "../../configs/config";
-import { UserRepository } from "../../repositories";
+import { UserAllergiesRepository, UserRepository } from "../../repositories";
 
-describe("Create user allergies", () => {
+describe("Get user allergies", () => {
   beforeAll(async () => {
     await new ConnectionTestJest().create();
   });
@@ -24,12 +23,7 @@ describe("Create user allergies", () => {
   });
 
   it("Should return status 400 and missing authorization headers as json response", async () => {
-    const allergy = {
-      name: faker.word.adjective(),
-      description: faker.random.words(6),
-    };
-
-    const response = await supertest(app).post("/user/allergy").send(allergy);
+    const response = await supertest(app).get("/user/allergies");
 
     expect(response.status).toBe(401);
     expect(response.body).toStrictEqual({
@@ -37,7 +31,7 @@ describe("Create user allergies", () => {
     });
   });
 
-  it("Should return status 400 and name is a required field as json response", async () => {
+  it("Should return status 200 and empty array as json response", async () => {
     const user = generateUser();
 
     const { id, email } = await new UserRepository().createUser(user);
@@ -46,22 +40,15 @@ describe("Create user allergies", () => {
 
     const token = sign({ userId: id, email }, secret, { expiresIn });
 
-    const allergy = {
-      description: faker.random.words(6),
-    };
-
     const response = await supertest(app)
-      .post("/user/allergy")
-      .send(allergy)
+      .get("/user/allergies")
       .set("Authorization", `Bearer ${token}`);
 
-    expect(response.status).toBe(400);
-    expect(response.body).toStrictEqual({
-      error: ["name is a required field"],
-    });
+    expect(response.status).toBe(200);
+    expect(response.body).toStrictEqual([]);
   });
 
-  it("Should return status 201 and user allergy as json response", async () => {
+  it("Should return status 200 and a array of user allergies as json response", async () => {
     const user = generateUser();
 
     const { id, email } = await new UserRepository().createUser(user);
@@ -70,19 +57,34 @@ describe("Create user allergies", () => {
 
     const token = sign({ userId: id, email }, secret, { expiresIn });
 
-    const allergy = {
-      name: faker.word.adjective(10),
+    const userAllergieToCreate1 = {
+      user: { id },
       description: faker.random.words(6),
+      allergy: { name: faker.word.adjective(10) },
     };
 
+    const userAllergieToCreate2 = {
+      user: { id },
+      description: faker.random.words(6),
+      allergy: { name: faker.word.adjective(10) },
+    };
+
+    const { user: userAllergy, ...allergy } =
+      await new UserAllergiesRepository().saveUserAllergy(
+        userAllergieToCreate1
+      );
+
+    const { user: userAllergy2, ...allergy2 } =
+      await new UserAllergiesRepository().saveUserAllergy(
+        userAllergieToCreate2
+      );
+
     const response = await supertest(app)
-      .post("/user/allergy")
-      .send(allergy)
+      .get("/user/allergies")
       .set("Authorization", `Bearer ${token}`);
 
-    expect(response.status).toBe(201);
-    expect(response.body).toHaveProperty("id");
-    expect(response.body).toHaveProperty("description");
-    expect(response.body.allergy).toHaveProperty("name");
+    expect(response.status).toBe(200);
+    expect(response.body).toContainEqual(allergy);
+    expect(response.body).toContainEqual(allergy2);
   });
 });
