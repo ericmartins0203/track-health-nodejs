@@ -1,7 +1,7 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
 
-export class firstcommit1651198592468 implements MigrationInterface {
-    name = 'firstcommit1651198592468'
+export class firstcommit1651237150947 implements MigrationInterface {
+    name = 'firstcommit1651237150947'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "allergies" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "name" character varying(100) NOT NULL, CONSTRAINT "UQ_991993cf56ba0ec861aaf515da8" UNIQUE ("name"), CONSTRAINT "PK_f72e0cf363a832b8fa8cf657118" PRIMARY KEY ("id"))`);
