@@ -11,7 +11,41 @@ class UserRepository implements IUserRepo {
   }
 
   createUser = async (user: IUserInterface) => this.ormRepository.save(user);
-
+  find = async (email: string): Promise<IUserInterface | undefined> =>
+    this.ormRepository
+      .createQueryBuilder("user")
+      .where("user.email = :email", { email })
+      .leftJoinAndSelect("user.userAllergies", "userAllergies")
+      .leftJoinAndSelect("userAllergies.allergy", "allergy")
+      .leftJoinAndSelect("user.userDiseases", "userDiseases")
+      .leftJoinAndSelect("userDiseases.disease", "diseases")
+      .leftJoinAndSelect("user.userVaccines", "userVaccines")
+      .leftJoinAndSelect("userVaccines.vaccine", "vaccine")
+      .leftJoinAndSelect("user.userSurgery", "userSurgery")
+      .leftJoinAndSelect("userSurgery.surgery", "surgery")
+      .leftJoinAndSelect("user.appointment", "appointment")
+      .leftJoinAndSelect("appointment.doctor", "doctor")
+      .leftJoinAndSelect("doctor.address", "address")
+      .leftJoinAndSelect("user.userMedications", "userMedications")
+      .leftJoinAndSelect("userMedications.medication", "medication")
+      .leftJoinAndSelect("user.anamnesis", "anamnesis")
+      .select([
+        "user",
+        "userDiseases",
+        "diseases.name",
+        "userAllergies",
+        "allergy.name",
+        "userVaccines",
+        "userSurgery",
+        "surgery.name",
+        "appointment",
+        "doctor",
+        "address",
+        "userMedications",
+        "medication.name",
+        "anamnesis",
+      ])
+      .getOne();
   findOne = async (email: string): Promise<IUserInterface | undefined> =>
     this.ormRepository
       .createQueryBuilder("user")
