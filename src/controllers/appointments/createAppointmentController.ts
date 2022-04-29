@@ -16,7 +16,7 @@ const createAppointmentController = async (req: Request, res: Response) => {
       doctorId
     );
 
-    delete appointment.user;
+    // delete appointment.user;
 
     return res.status(201).json({
       message: "Appointment created successfully",

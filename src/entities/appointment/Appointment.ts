@@ -11,7 +11,7 @@ export class Appointments {
   @Column({ nullable: false })
   date: Date;
 
-  @Column({ type: "varchar", length: 100, nullable: false, unique: true })
+  @Column({ type: "varchar", length: 100 })
   description: string;
 
   @ManyToOne(() => Doctors, (doctor) => doctor, { eager: true })

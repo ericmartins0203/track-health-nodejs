@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 
+import { IUserTablesShape } from "../../interfaces";
 import { createUserMedicationService } from "../../services";
 
 const createUserMedicationController = async (req: Request, res: Response) => {
@@ -8,7 +9,7 @@ const createUserMedicationController = async (req: Request, res: Response) => {
     const { userId } = req.decoded;
 
     const newUserMedication = await createUserMedicationService(
-      validate,
+      validate as IUserTablesShape,
       userId
     );
 

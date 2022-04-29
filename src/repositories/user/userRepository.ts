@@ -46,6 +46,7 @@ class UserRepository implements IUserRepo {
         "medication.name",
         "anamnesis",
       ])
+      .addSelect("user.password")
       .getOne();
 
   findById = async (id: string): Promise<IUserInterface | undefined> =>

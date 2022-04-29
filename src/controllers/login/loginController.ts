@@ -10,7 +10,7 @@ const loginController = async (
   try {
     const { email, password } = req.validate as IUserInterface;
     const token = await loginServices(email, password);
-    return res.json({ token });
+    return res.status(200).json({ token });
   } catch (error) {
     if (error instanceof Error) {
       return res.status(400).json({
