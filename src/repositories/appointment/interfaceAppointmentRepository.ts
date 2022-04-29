@@ -15,7 +15,7 @@ interface ICreateAppointmentInterface {
   date: Date;
   description: string;
   doctor: IDoctorCreateInterface;
-  user: IUserInterface;
+  user?: IUserInterface;
 }
 
 interface IAppointmentRepo {

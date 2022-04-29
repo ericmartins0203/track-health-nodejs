@@ -29,17 +29,6 @@ describe("Create User", () => {
     expect(response.body).toHaveProperty("gender");
   });
 
-  it("will return status 200 and user as json response", async () => {
-    const response = await supertest(app)
-      .post("/user/register")
-      .send(generateUser());
-
-    expect(response.status).toBe(200);
-    expect(response.body).toHaveProperty("id");
-    expect(response.body).toHaveProperty("name");
-    expect(response.body).toHaveProperty("gender");
-  });
-
   it("will return status 400 and missing fields as json response, to create user", async () => {
     const newUser = generateUser();
     const { birthDate, ...user } = newUser;

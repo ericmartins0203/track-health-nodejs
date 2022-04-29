@@ -1,3 +1,4 @@
-const dbconfig = require('./dist/src/database/ormconfig');
+const dbconfig = require("./dist/src/database/ormconfig");
 
-module.exports=dbconfig;
+module.exports = dbconfig;
+
