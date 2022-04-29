@@ -11,7 +11,7 @@ const createVaccineController = async (
     const { userId } = request.decoded;
     const vaccineData = request.validate as IVaccineInterfaces;
     const vaccine = await createVaccineService(vaccineData, userId);
-    return response.json(vaccine);
+    return response.status(201).json(vaccine);
   } catch (error: unknown) {
     if (error instanceof Error) {
       return response.status(400).json({

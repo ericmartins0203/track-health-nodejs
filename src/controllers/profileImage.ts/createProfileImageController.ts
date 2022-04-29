@@ -11,7 +11,7 @@ const createProfileImageController = async (req: Request, res: Response) => {
       userId
     );
 
-    return res.json(profileImage);
+    return res.status(201).json(profileImage);
   } catch (error: any) {
     if (error instanceof Error) {
       return res.status(400).json({
